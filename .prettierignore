@@ -1,0 +1,16 @@
+# LWC templates are NOT HTML or XML.
+#
+# `@prettier/plugin-xml` claims `.html` and, because XML requires quoted
+# attribute values, rewrites every LWC expression `class={foo}` into
+# `class="{foo}"` - which the LWC compiler rejects outright with LWC1034.
+# Formatting them is not worth a build-breaking rewrite, so they are excluded.
+force-app/main/default/lwc/**/*.html
+
+# Generated and vendored
+node_modules/
+coverage/
+package-lock.json
+.sf/
+.sfdx/
+.vibeforce/reports/
+.vibeforce/state/

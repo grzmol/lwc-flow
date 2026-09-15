@@ -1,0 +1,36 @@
+<template>
+  <svg class="flow__marker-defs" aria-hidden="true">
+    <defs>
+      <template for:each={resolvedMarkers} for:item="marker">
+        <marker
+          key={marker.id}
+          class="flow__arrowhead"
+          id={marker.id}
+          markerWidth={marker.markerWidth}
+          markerHeight={marker.markerHeight}
+          viewBox="-10 -10 20 20"
+          markerUnits={marker.markerUnits}
+          orient={marker.orient}
+        >
+          <polyline
+            lwc:if={marker.filled}
+            class={marker.shapeClass}
+            style={marker.style}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            points={marker.points}
+          ></polyline>
+          <polyline
+            lwc:else
+            class={marker.shapeClass}
+            style={marker.style}
+            stroke-linecap="round"
+            fill="none"
+            stroke-linejoin="round"
+            points={marker.points}
+          ></polyline>
+        </marker>
+      </template>
+    </defs>
+  </svg>
+</template>

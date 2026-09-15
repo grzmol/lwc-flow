@@ -1,0 +1,59 @@
+/*
+ * Ported from `@xyflow/system/src/styles/init.css` (.xy-flow__handle, layout and state) and
+ * `style.css` (size, colour, radius).
+ *
+ * This component renders in light DOM, so it has no `:host` to hang tunables on and this sheet is
+ * injected unscoped into whichever root the handle lands in. Every selector is therefore anchored
+ * on `flow__handle`. The tunables are read here with SLDS global hooks as their defaults; an
+ * ancestor - normally the flow root - overrides them, because custom properties inherit across
+ * shadow boundaries.
+ */
+
+.flow__handle {
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+  min-width: 5px;
+  min-height: 5px;
+  width: var(--lwc-flow-handle-size, 6px);
+  height: var(--lwc-flow-handle-size, 6px);
+  background-color: var(--lwc-flow-handle-background-color, var(--slds-g-color-neutral-base-10, #1a192b));
+  border: 1px solid var(--lwc-flow-handle-border-color, var(--slds-g-color-neutral-base-100, #ffffff));
+  border-radius: 100%;
+}
+
+/* The origin of an in-flight connection stays grabbable while the pointer is down. */
+.flow__handle.connectingfrom {
+  pointer-events: all;
+}
+
+/* Upstream shows where a connection may start or end; that is the only hit-testable state. */
+.flow__handle.connectionindicator {
+  pointer-events: all;
+  cursor: crosshair;
+}
+
+.flow__handle-bottom {
+  top: auto;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+
+.flow__handle-top {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flow__handle-left {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.flow__handle-right {
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+}

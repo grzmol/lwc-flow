@@ -1,0 +1,53 @@
+/*
+ * Ported from `@xyflow/system/src/styles/init.css`: rules `.xy-flow__container`,
+ * `.xy-flow__background` and `.xy-flow__background-pattern`, plus the per-variant colour defaults
+ * from the `.xy-flow` custom property block. Upstream's `-props` layer is kept: the component
+ * writes `--flow-background-color-props` / `--flow-background-pattern-color-props` inline from its
+ * `bgColor` / `color` properties, and a consumer can theme every background at once by setting
+ * `--flow-background-color` or `--flow-background-pattern-color` on an ancestor.
+ *
+ * Shadow DOM means these values cannot come from one global sheet, so the SLDS global hooks stand
+ * in as the theme-aware defaults with upstream's literal colours as the final fallback.
+ */
+
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Upstream paints the background behind every other layer of the pane. */
+  z-index: -1;
+}
+
+.flow__background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(
+    --flow-background-color-props,
+    var(--flow-background-color, var(--slds-g-color-surface-1, transparent))
+  );
+}
+
+.flow__background-pattern.dots {
+  fill: var(
+    --flow-background-pattern-color-props,
+    var(--flow-background-pattern-color, var(--slds-g-color-neutral-base-50, #91919a))
+  );
+}
+
+.flow__background-pattern.lines {
+  stroke: var(
+    --flow-background-pattern-color-props,
+    var(--flow-background-pattern-color, var(--slds-g-color-border-1, #eee))
+  );
+}
+
+.flow__background-pattern.cross {
+  stroke: var(
+    --flow-background-pattern-color-props,
+    var(--flow-background-pattern-color, var(--slds-g-color-border-1, #e2e2e2))
+  );
+}

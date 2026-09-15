@@ -1,0 +1,12 @@
+/*
+ * Ported from `@xyflow/system/src/styles/style.css` (.xy-flow__node-group).
+ *
+ * The group's border, radius and padding are common to all four built-in types and live in the
+ * node wrapper's sheet; only the translucent fill is specific to a group. This component renders
+ * in light DOM, so this sheet is injected unscoped into the node wrapper's root and the rule
+ * reaches the node element that carries `flow__node-group`.
+ */
+
+.flow__node-group {
+  background-color: var(--lwc-flow-node-group-background-color, rgba(240, 240, 240, 0.25));
+}

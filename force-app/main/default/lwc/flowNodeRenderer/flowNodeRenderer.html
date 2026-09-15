@@ -1,0 +1,23 @@
+<template>
+  <div class="flow__nodes">
+    <template for:each={nodeIds} for:item="id">
+      <c-flow-node-wrapper
+        key={id}
+        store={store}
+        node-id={id}
+        flow-id={flowId}
+        onnodeclick={handleNodeEvent}
+        onnodedoubleclick={handleNodeEvent}
+        onnodecontextmenu={handleNodeEvent}
+        onnodemouseenter={handleNodeEvent}
+        onnodemouseleave={handleNodeEvent}
+        onnodemeasured={handleNodeEvent}
+        onnodedragstart={handleNodeEvent}
+        onnodedrag={handleNodeEvent}
+        onnodedragstop={handleNodeEvent}
+        onnodemove={handleNodeEvent}
+        onconnectstart={handleNodeEvent}
+      ></c-flow-node-wrapper>
+    </template>
+  </div>
+</template>

@@ -1,0 +1,44 @@
+<template>
+  <div class={panelClass}>
+    <svg
+      lwc:ref="svg"
+      class="flow__minimap-svg"
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      style={svgStyle}
+      role="img"
+      aria-labelledby={labelId}
+      onclick={handleClick}
+      onpointerdown={handlePointerDown}
+      onpointermove={handlePointerMove}
+      onpointerup={handlePointerUp}
+      onpointercancel={handlePointerUp}
+      onwheel={handleWheel}
+    >
+      <title id={labelId}>{resolvedAriaLabel}</title>
+
+      <template for:each={nodeRects} for:item="node">
+        <rect
+          key={node.id}
+          class={node.rectClass}
+          data-id={node.id}
+          x={node.x}
+          y={node.y}
+          rx={node.rx}
+          ry={node.ry}
+          width={node.width}
+          height={node.height}
+          onclick={handleNodeClick}
+        ></rect>
+      </template>
+
+      <!--
+              One path for the whole mask. fill-rule evenodd subtracts the inner
+              viewport rectangle from the outer one, so the visible region is a
+              hole rather than four separate dimming rectangles.
+            -->
+      <path class="flow__minimap-mask" d={maskPath} fill-rule="evenodd" pointer-events="none"></path>
+    </svg>
+  </div>
+</template>

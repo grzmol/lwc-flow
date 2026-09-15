@@ -1,0 +1,48 @@
+/*
+ * Ported from `@xyflow/system/src/styles/init.css`, rule `.xy-flow__panel`. Upstream nests
+ * `&.center` inside `&.top` / `&.bottom`; the rules are flattened here because the LWC style
+ * compiler targets plain CSS.
+ */
+
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* The overlay layer itself must not swallow pane gestures; the panel element re-enables them. */
+  pointer-events: none;
+  z-index: 5;
+}
+
+.flow__panel {
+  position: absolute;
+  margin: var(--flow-panel-margin, 15px);
+  pointer-events: all;
+}
+
+.flow__panel.top {
+  top: 0;
+}
+
+.flow__panel.bottom {
+  bottom: 0;
+}
+
+/*
+ * Upstream shifts a centered panel back by its own margin before centering it, so the margin does
+ * not bias the centering. Both translations are kept in the same order upstream writes them.
+ */
+.flow__panel.top.center,
+.flow__panel.bottom.center {
+  left: 50%;
+  transform: translateX(calc(var(--flow-panel-margin, 15px) * -1)) translateX(-50%);
+}
+
+.flow__panel.left {
+  left: 0;
+}
+
+.flow__panel.right {
+  right: 0;
+}

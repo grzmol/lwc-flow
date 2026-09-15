@@ -1,0 +1,87 @@
+/*
+ * Root layout and the theme surface for the whole flow.
+ *
+ * Every tunable a descendant needs is declared here on :host so it cascades
+ * across shadow boundaries - a CSS custom property is the only thing that does.
+ * Defaults route through SLDS global hooks so a flow inherits the org theme
+ * instead of hard-coding React Flow's palette.
+ */
+:host {
+  /* Surfaces */
+  --flow-background-color: var(--slds-g-color-surface-container-1, #fff);
+  --flow-background-pattern-color: var(--slds-g-color-border-1, #e2e2e2);
+
+  /* Nodes */
+  --flow-node-background: var(--slds-g-color-surface-container-1, #fff);
+  --flow-node-color: var(--slds-g-color-on-surface-1, #222);
+  --flow-node-border: 1px solid var(--slds-g-color-border-2, #1a192b);
+  --flow-node-border-radius: 3px;
+  --flow-node-padding: 10px;
+  --flow-node-font-size: 12px;
+  --flow-node-box-shadow-selected: 0 0 0 0.5px var(--slds-g-color-accent-container-3, #1a192b);
+
+  /* Handles */
+  --flow-handle-size: 6px;
+  --flow-handle-background: var(--slds-g-color-accent-container-3, #1a192b);
+  --flow-handle-border-color: var(--slds-g-color-surface-container-1, #fff);
+
+  /* Edges: consumed by c-flow-edge-renderer's own :host block too. */
+  --flow-edge-stroke: var(--slds-g-color-border-2, #b1b1b7);
+  --flow-edge-stroke-selected: var(--slds-g-color-accent-container-3, #555);
+
+  /* Selection */
+  --flow-selection-background: rgba(0, 89, 220, 0.08);
+  --flow-selection-border: 1px dotted rgba(0, 89, 220, 0.8);
+
+  /* Controls and minimap */
+  --flow-controls-button-background: var(--slds-g-color-surface-container-1, #fefefe);
+  --flow-controls-button-color: var(--slds-g-color-on-surface-2, #555);
+  --flow-controls-button-border-color: var(--slds-g-color-border-1, #eee);
+  --flow-minimap-background: var(--slds-g-color-surface-container-1, #fff);
+  --flow-minimap-mask-fill: rgba(240, 240, 240, 0.6);
+  --flow-minimap-node-fill: var(--slds-g-color-border-1, #e2e2e2);
+
+  display: block;
+  /*
+     * A flow with no height renders nothing and looks broken. Upstream reports
+     * error004 for a zero-size container; giving a floor is friendlier and the
+     * consumer can still override it.
+     */
+  min-height: 300px;
+  height: 100%;
+  position: relative;
+}
+
+.flow__pane {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--flow-background-color);
+  /* Suppress the browser's own pan/zoom so the gesture layer owns them. */
+  touch-action: none;
+  /* Contain paint and layout so panning cannot invalidate the whole page. */
+  contain: layout paint;
+}
+
+.flow__viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*
+     * The transform origin must be the top-left corner: every coordinate
+     * conversion in c/flowMath assumes translate-then-scale about (0,0).
+     */
+  transform-origin: 0 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/*
+ * The viewport layer itself is transparent to the pointer so the pane keeps
+ * receiving pan and marquee gestures; nodes opt back in individually.
+ */
+.flow__viewport > * {
+  pointer-events: auto;
+}

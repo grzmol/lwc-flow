@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>false</isExposed>
+    <description>
+        lwc-flow: viewport transform, constrain, zoom interpolation and easing. Native replacement for d3-zoom math. Service component, no template.
+    </description>
+</LightningComponentBundle>

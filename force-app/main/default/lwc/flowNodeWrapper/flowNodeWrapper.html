@@ -1,0 +1,26 @@
+<template>
+  <div
+    lwc:if={hasNode}
+    lwc:ref="node"
+    class={rootClass}
+    style={rootStyle}
+    data-id={nodeId}
+    tabindex={tabIndex}
+    role={role}
+    aria-label={ariaLabel}
+    aria-roledescription="node"
+    onclick={handleClick}
+    ondblclick={handleDoubleClick}
+    oncontextmenu={handleContextMenu}
+    onmouseenter={handleMouseEnter}
+    onmouseleave={handleMouseLeave}
+    onkeydown={handleKeyDown}
+  >
+    <lwc:component
+      lwc:if={nodeCtor}
+      lwc:is={nodeCtor}
+      lwc:spread={nodeProps}
+      onconnectstart={handleConnectStart}
+    ></lwc:component>
+  </div>
+</template>

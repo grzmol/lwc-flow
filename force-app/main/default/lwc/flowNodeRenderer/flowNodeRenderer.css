@@ -1,0 +1,30 @@
+/*
+ * Ported from `@xyflow/system/src/styles/init.css` (.xy-flow__nodes) plus the `containerStyle`
+ * React applies inline in `@xyflow/react/src/styles/utils.ts`.
+ *
+ * Upstream has no element between the transformed viewport and the node layer. Here the component
+ * host sits in between, so it is stretched over the viewport rather than given `display: contents`:
+ * the geometry is identical, and nodes still position themselves against `.flow__nodes`.
+ *
+ * The layer itself takes no pointer events - only the nodes inside it do, which is what lets a
+ * drag on empty space reach the pane underneath.
+ */
+
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.flow__nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-origin: 0 0;
+}

@@ -1,0 +1,60 @@
+<template>
+  <!--
+      The pane is the gesture surface: pan/zoom, marquee selection and the
+      global key handler all attach here. It is NOT transformed - the viewport
+      div below is, which is what keeps panning off the re-render path.
+    -->
+  <div
+    class="flow__pane"
+    lwc:ref="pane"
+    data-flow-id={flowId}
+    onpointerdown={handlePanePointerDown}
+    onpointermove={handlePanePointerMove}
+    onpointerup={handlePanePointerUp}
+    onpointercancel={handlePanePointerUp}
+    onclick={handlePaneClick}
+    oncontextmenu={handlePaneContextMenu}
+  >
+    <c-flow-background lwc:if={hasBackground} store={store}></c-flow-background>
+
+    <!--
+          Edge layer sits under the node layer and applies the transform to its
+          own inner <g>, not via CSS on the <svg>, so stroke widths stay put.
+        -->
+    <c-flow-edge-renderer
+      store={store}
+      flow-id={flowId}
+      default-marker-start={defaultMarkerStart}
+      default-marker-end={defaultMarkerEnd}
+      connection-line-type={connectionLineType}
+      onedgeclick={handleForward}
+      onedgedoubleclick={handleForward}
+      onedgecontextmenu={handleForward}
+      onedgemouseenter={handleForward}
+      onedgemouseleave={handleForward}
+    ></c-flow-edge-renderer>
+
+    <!-- The only transformed element. -->
+    <div class="flow__viewport" lwc:ref="viewport" style={viewportStyle}>
+      <c-flow-node-renderer
+        store={store}
+        flow-id={flowId}
+        onnodeschange={handleNodesChange}
+        onconnect={handleConnect}
+        onnodeclick={handleForward}
+        onnodedoubleclick={handleForward}
+        onnodecontextmenu={handleForward}
+        onnodemouseenter={handleForward}
+        onnodemouseleave={handleForward}
+        onnodedragstart={handleForward}
+        onnodedrag={handleForward}
+        onnodedragstop={handleForward}
+      ></c-flow-node-renderer>
+    </div>
+
+    <!-- Overlays: outside the viewport, so they stay pinned to the pane. -->
+    <c-flow-controls lwc:if={hasControls} store={store} onfitview={handleFitView}></c-flow-controls>
+    <c-flow-minimap lwc:if={hasMinimap} store={store}></c-flow-minimap>
+    <slot></slot>
+  </div>
+</template>

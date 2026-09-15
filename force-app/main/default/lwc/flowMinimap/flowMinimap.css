@@ -1,0 +1,70 @@
+:host {
+  --flow-minimap-background: var(--slds-g-color-surface-container-1, #fff);
+  --flow-minimap-mask-fill: rgba(240, 240, 240, 0.6);
+  --flow-minimap-mask-stroke: none;
+  --flow-minimap-mask-stroke-width: 1;
+  --flow-minimap-node-fill: var(--slds-g-color-border-1, #e2e2e2);
+  --flow-minimap-node-stroke: transparent;
+  --flow-minimap-node-stroke-width: 2;
+  --flow-minimap-node-fill-selected: var(--slds-g-color-accent-container-3, #555);
+
+  /*
+     * Span the pane but stay transparent to the pointer, so only the minimap
+     * itself is interactive and the rest of the pane keeps panning.
+     */
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.flow__minimap {
+  position: absolute;
+  pointer-events: all;
+  background: var(--flow-minimap-background);
+  margin: 15px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.flow__minimap--top-left {
+  top: 0;
+  left: 0;
+}
+.flow__minimap--top-right {
+  top: 0;
+  right: 0;
+}
+.flow__minimap--bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.flow__minimap--bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.flow__minimap-svg {
+  display: block;
+}
+
+.flow__minimap-mask {
+  fill: var(--flow-minimap-mask-fill);
+  stroke: var(--flow-minimap-mask-stroke);
+  stroke-width: var(--flow-minimap-mask-stroke-width);
+}
+
+.flow__minimap-node {
+  fill: var(--flow-minimap-node-fill);
+  stroke: var(--flow-minimap-node-stroke);
+  stroke-width: var(--flow-minimap-node-stroke-width);
+  /*
+     * The minimap is tiny and redraws on every pan frame; skipping
+     * anti-aliasing is a measurable win and invisible at this size.
+     */
+  shape-rendering: crispEdges;
+}
+
+.flow__minimap-node.selected {
+  fill: var(--flow-minimap-node-fill-selected);
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Flow Canvas</masterLabel>
+    <description>
+        Node-based flow editor. A port of xyflow to Lightning Web Components: pan and zoom, draggable nodes, connectable handles, and custom node types.
+    </description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__Tab</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__RecordPage,lightning__HomePage,lightning__Tab">
+            <property
+                name="fitView"
+                type="Boolean"
+                label="Fit View On Load"
+                description="Zoom and pan so every node is visible once the graph has been measured."
+                default="true"
+            />
+            <property name="showBackground" type="Boolean" label="Show Background" description="Render the dotted background pattern." default="true" />
+            <property name="showControls" type="Boolean" label="Show Controls" description="Render the zoom, fit-view and lock controls." default="true" />
+            <property name="showMinimap" type="Boolean" label="Show Mini Map" description="Render the mini map overview." default="false" />
+            <property
+                name="minZoom"
+                type="Integer"
+                label="Minimum Zoom Percent"
+                description="Lowest zoom level, as a percentage. 50 means half size."
+                default="50"
+                min="1"
+                max="1000"
+            />
+            <property
+                name="maxZoom"
+                type="Integer"
+                label="Maximum Zoom Percent"
+                description="Highest zoom level, as a percentage. 200 means double size."
+                default="200"
+                min="1"
+                max="1000"
+            />
+            <property name="snapToGrid" type="Boolean" label="Snap To Grid" description="Snap dragged nodes to the grid." default="false" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

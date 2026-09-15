@@ -1,0 +1,11 @@
+/*
+ * The node box itself - border, padding, width, background - belongs to the node wrapper, which
+ * owns the element carrying `flow__node-default`, so this sheet only covers the label.
+ *
+ * Light DOM: this file is injected unscoped into the node wrapper's root, hence the class anchor.
+ */
+
+.flow__node-label {
+  pointer-events: none;
+  user-select: none;
+}

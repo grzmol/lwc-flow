@@ -1,0 +1,22 @@
+# Salesforce CLI internals: auth material and machine-local config.
+.sf/
+.sfdx/
+.localdevserver/
+
+# vibe-force per-machine output. `.vibeforce/config.json` IS committed.
+.vibeforce/reports/
+.vibeforce/state/
+
+# Build and test artefacts
+node_modules/
+coverage/
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Agent harness scratch state, not project configuration.
+/.omc

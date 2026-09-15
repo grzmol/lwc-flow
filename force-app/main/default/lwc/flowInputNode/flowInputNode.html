@@ -1,0 +1,12 @@
+<template lwc:render-mode="light">
+  <span class="flow__node-label">{label}</span>
+  <c-flow-handle
+    type="source"
+    position={sourcePosition}
+    store={store}
+    node-id={id}
+    flow-id={flowId}
+    is-connectable={isConnectable}
+    onconnectstart={handleConnectStart}
+  ></c-flow-handle>
+</template>

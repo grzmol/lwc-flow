@@ -1,0 +1,99 @@
+<template>
+  <!--
+      One <svg> for the whole edge layer. Every <g>/<path> below is namespaced
+      correctly only because the <svg> is in THIS template; see the class comment.
+
+      The <defs> is emitted here rather than delegated to c-flow-markers because
+      an url(#id) reference does not cross a shadow boundary: the markers must
+      share this root with the paths that use them.
+    -->
+  <svg class="flow__edges" aria-label="Flow edges">
+    <defs>
+      <template for:each={markerRows} for:item="marker">
+        <marker
+          key={marker.id}
+          class="flow__arrowhead"
+          id={marker.id}
+          markerWidth={marker.markerWidth}
+          markerHeight={marker.markerHeight}
+          viewBox="-10 -10 20 20"
+          markerUnits={marker.markerUnits}
+          orient={marker.orient}
+        >
+          <polyline
+            lwc:if={marker.filled}
+            class={marker.shapeClass}
+            style={marker.style}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            points={marker.points}
+          ></polyline>
+          <polyline
+            lwc:else
+            class={marker.shapeClass}
+            style={marker.style}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+            points={marker.points}
+          ></polyline>
+        </marker>
+      </template>
+    </defs>
+
+    <!--
+          The viewport transform is applied to this <g>, not to the <svg> via CSS.
+          Scaling the SVG element would scale stroke widths with it; scaling a
+          group scales geometry while non-scaling-stroke keeps strokes constant.
+        -->
+    <g class="flow__edges-viewport" style={viewportStyle}>
+      <template for:each={edgeRows} for:item="edge">
+        <g
+          key={edge.id}
+          class={edge.groupClass}
+          data-id={edge.id}
+          aria-label={edge.ariaLabel}
+          onclick={handleEdgeClick}
+          ondblclick={handleEdgeDoubleClick}
+          oncontextmenu={handleEdgeContextMenu}
+          onmouseenter={handleEdgeMouseEnter}
+          onmouseleave={handleEdgeMouseLeave}
+        >
+          <!--
+                      Invisible wide stroke painted first so it sits under the
+                      visible path: it widens the hit area without changing the
+                      look. Upstream calls this the interaction path.
+                    -->
+          <path
+            lwc:if={edge.hasInteraction}
+            class="flow__edge-interaction"
+            d={edge.path}
+            stroke-width={edge.interactionWidth}
+            stroke="transparent"
+            fill="none"
+          ></path>
+
+          <!--
+                      marker-start / marker-end are set imperatively in
+                      renderedCallback, NOT bound here. Under synthetic shadow
+                      LWC rewrites every `id` to a scoped value but rewrites no
+                      SVG url(#...) attribute (ID_REFERENCING_ATTRIBUTES_SET is
+                      ARIA-only plus for/popovertarget), so a bound
+                      url(#markerId) would point at an id that no longer exists.
+                      Reading the rendered id back works in both shadow modes.
+                    -->
+          <path
+            class={edge.pathClass}
+            d={edge.path}
+            style={edge.style}
+            data-edge-id={edge.id}
+            fill="none"
+          ></path>
+        </g>
+      </template>
+
+      <!-- In-flight connection preview, above every edge. -->
+      <path lwc:if={hasConnection} class={connectionPath.lineClass} d={connectionPath.path} fill="none"></path>
+    </g>
+  </svg>
+</template>

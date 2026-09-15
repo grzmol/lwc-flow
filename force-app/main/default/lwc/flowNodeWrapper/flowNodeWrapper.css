@@ -1,0 +1,81 @@
+/*
+ * Ported from `@xyflow/system/src/styles/init.css` (.xy-flow__node layout and cursors) and
+ * `style.css` (the box of the four built-in types).
+ *
+ * This component owns the element that carries both `flow__node` and `flow__node-<type>`, so the
+ * type box lives here rather than in the built-in node bundles - those render only their content.
+ * Tunables are exposed on `:host` with SLDS global hooks as their defaults; custom properties
+ * inherit through shadow boundaries, so a flow can retheme every node from one place.
+ */
+
+:host {
+  --lwc-flow-node-color: var(--slds-g-color-neutral-base-10, inherit);
+  --lwc-flow-node-border: 1px solid var(--slds-g-color-border-base-1, #1a192b);
+  --lwc-flow-node-background-color: var(--slds-g-color-neutral-base-100, #ffffff);
+  --lwc-flow-node-border-radius: var(--slds-g-radius-border-2, 3px);
+  --lwc-flow-node-box-shadow-hover: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
+  --lwc-flow-node-box-shadow-selected: 0 0 0 0.5px #1a192b;
+}
+
+.flow__node {
+  position: absolute;
+  user-select: none;
+  pointer-events: all;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.flow__node.selectable {
+  cursor: pointer;
+}
+
+.flow__node.selectable:focus,
+.flow__node.selectable:focus-visible {
+  outline: none;
+}
+
+.flow__node.draggable {
+  cursor: grab;
+  pointer-events: all;
+}
+
+.flow__node.draggable.dragging {
+  cursor: grabbing;
+}
+
+.flow__node-input,
+.flow__node-default,
+.flow__node-output,
+.flow__node-group {
+  padding: 10px;
+  width: 150px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: var(--lwc-flow-node-border-radius);
+  color: var(--lwc-flow-node-color);
+  border: var(--lwc-flow-node-border);
+  background-color: var(--lwc-flow-node-background-color);
+}
+
+.flow__node-input.selectable:hover,
+.flow__node-default.selectable:hover,
+.flow__node-output.selectable:hover,
+.flow__node-group.selectable:hover {
+  box-shadow: var(--lwc-flow-node-box-shadow-hover);
+}
+
+.flow__node-input.selectable.selected,
+.flow__node-default.selectable.selected,
+.flow__node-output.selectable.selected,
+.flow__node-group.selectable.selected,
+.flow__node-input.selectable:focus,
+.flow__node-default.selectable:focus,
+.flow__node-output.selectable:focus,
+.flow__node-group.selectable:focus,
+.flow__node-input.selectable:focus-visible,
+.flow__node-default.selectable:focus-visible,
+.flow__node-output.selectable:focus-visible,
+.flow__node-group.selectable:focus-visible {
+  box-shadow: var(--lwc-flow-node-box-shadow-selected);
+}

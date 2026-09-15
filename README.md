@@ -2,7 +2,7 @@
 
 A node-based flow editor for Salesforce Lightning Web Components. A port of
 [xyflow](https://github.com/xyflow/xyflow) (`@xyflow/react` 12.11.6, `@xyflow/system` 0.0.82) with
-**no runtime dependencies** — no d3, no npm packages, no CDN scripts.
+**no runtime dependencies** - no d3, no npm packages, no CDN scripts.
 
 ```html
 <c-flow
@@ -113,7 +113,7 @@ an endpoint.
 
 ## Custom edge types
 
-An edge type is a path provider, **not** a component — LWC fixes the SVG namespace per template and
+An edge type is a path provider, **not** a component - LWC fixes the SVG namespace per template and
 a custom element never upgrades inside `<svg>`, so all edges are painted by one renderer:
 
 ```js

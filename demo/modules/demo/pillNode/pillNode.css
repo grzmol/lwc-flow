@@ -1,0 +1,39 @@
+/*
+ * Light DOM, so these selectors are global to the page: every class is prefixed `demo-pill`.
+ */
+
+.demo-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid #5b6cff;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #eef0ff 100%);
+  box-shadow: 0 1px 2px rgb(15 17 21 / 18%);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1b1f3b;
+  white-space: nowrap;
+}
+
+.demo-pill_dragging {
+  box-shadow: 0 6px 16px rgb(91 108 255 / 45%);
+}
+
+.demo-pill__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #5b6cff;
+}
+
+.demo-pill__badge {
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.35rem;
+  background: #1b1f3b;
+  color: #fff;
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

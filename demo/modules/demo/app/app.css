@@ -1,0 +1,225 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem) 2.5rem;
+  box-sizing: border-box;
+  color: #e6e8ef;
+}
+
+.demo__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.demo__title {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.demo__sub {
+  margin: 0.35rem 0 0;
+  max-width: 62ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #9aa1b4;
+}
+
+.demo__sub a,
+.demo__repo {
+  color: #8f9dff;
+}
+
+.demo__repo {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #2c3040;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.demo__repo:hover {
+  border-color: #5b6cff;
+}
+
+.demo__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.8125rem;
+}
+
+.demo__btn {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #2c3040;
+  border-radius: 0.5rem;
+  background: #171a24;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.demo__btn:hover:not(:disabled) {
+  border-color: #5b6cff;
+}
+
+.demo__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.demo__field,
+.demo__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #9aa1b4;
+}
+
+.demo__select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #2c3040;
+  border-radius: 0.4rem;
+  background: #171a24;
+  color: #e6e8ef;
+  font: inherit;
+}
+
+.demo__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.demo__canvas {
+  height: min(72vh, 46rem);
+  border: 1px solid #2c3040;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+/*
+ * The flow takes its size from its host element, and it themes through the
+ * `--flow-*` custom properties on `c-flow`: shadow DOM rules out a global sheet, and a custom
+ * property is the only thing that crosses a shadow boundary.
+ */
+c-flow {
+  display: block;
+  height: 100%;
+  --flow-node-background: #ffffff;
+  --flow-node-color: #1b1f3b;
+  --flow-node-border: 1px solid #c9cddb;
+  --flow-node-border-radius: 0.375rem;
+  --flow-node-box-shadow-selected: 0 0 0 1.5px #5b6cff;
+  --flow-edge-stroke: #8d93a8;
+  --flow-edge-stroke-selected: #5b6cff;
+  --flow-handle-background: #5b6cff;
+  --flow-background-pattern-color: #d7dbe6;
+  --flow-minimap-node-fill: #c9cddb;
+  --flow-minimap-node-fill-selected: #5b6cff;
+}
+
+.demo__hint {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  background: rgb(15 17 21 / 82%);
+  color: #e6e8ef;
+  font-size: 0.75rem;
+}
+
+.demo__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #2c3040;
+  border-radius: 0.75rem;
+  background: #12141c;
+  min-width: 0;
+}
+
+.demo__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.demo__stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #22252f;
+  border-radius: 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9aa1b4;
+}
+
+.demo__stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #e6e8ef;
+}
+
+.demo__side-title {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9aa1b4;
+}
+
+.demo__side-note {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #767d92;
+}
+
+.demo__side-note code {
+  color: #8f9dff;
+}
+
+.demo__log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+}
+
+.demo__log-row {
+  padding: 0.3rem 0.45rem;
+  border-radius: 0.35rem;
+  background: #171a24;
+  color: #c3c8d8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 60rem) {
+  .demo__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .demo__canvas {
+    height: 60vh;
+  }
+}

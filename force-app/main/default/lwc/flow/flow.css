@@ -19,6 +19,8 @@
   --flow-node-padding: 10px;
   --flow-node-font-size: 12px;
   --flow-node-box-shadow-selected: 0 0 0 0.5px var(--slds-g-color-accent-container-3, #1a192b);
+  --flow-node-box-shadow-hover: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
+  --flow-node-group-background: rgba(240, 240, 240, 0.25);
 
   /* Handles */
   --flow-handle-size: 6px;

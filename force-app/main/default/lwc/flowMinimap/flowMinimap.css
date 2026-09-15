@@ -1,13 +1,13 @@
+/*
+ * Minimap styling.
+ *
+ * Every tunable is read at its use site with an SLDS global hook and then
+ * upstream's literal as the fallbacks. Declaring the tunables on this
+ * component's own `:host` instead would shadow the value inherited from
+ * `c-flow`, and with it every consumer override; the component's own
+ * properties still arrive as inline custom properties on the host.
+ */
 :host {
-  --flow-minimap-background: var(--slds-g-color-surface-container-1, #fff);
-  --flow-minimap-mask-fill: rgba(240, 240, 240, 0.6);
-  --flow-minimap-mask-stroke: none;
-  --flow-minimap-mask-stroke-width: 1;
-  --flow-minimap-node-fill: var(--slds-g-color-border-1, #e2e2e2);
-  --flow-minimap-node-stroke: transparent;
-  --flow-minimap-node-stroke-width: 2;
-  --flow-minimap-node-fill-selected: var(--slds-g-color-accent-container-3, #555);
-
   /*
      * Span the pane but stay transparent to the pointer, so only the minimap
      * itself is interactive and the rest of the pane keeps panning.
@@ -21,7 +21,7 @@
 .flow__minimap {
   position: absolute;
   pointer-events: all;
-  background: var(--flow-minimap-background);
+  background: var(--flow-minimap-background, var(--slds-g-color-surface-container-1, #fff));
   margin: 15px;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -49,15 +49,15 @@
 }
 
 .flow__minimap-mask {
-  fill: var(--flow-minimap-mask-fill);
-  stroke: var(--flow-minimap-mask-stroke);
-  stroke-width: var(--flow-minimap-mask-stroke-width);
+  fill: var(--flow-minimap-mask-fill, rgba(240, 240, 240, 0.6));
+  stroke: var(--flow-minimap-mask-stroke, none);
+  stroke-width: var(--flow-minimap-mask-stroke-width, 1);
 }
 
 .flow__minimap-node {
-  fill: var(--flow-minimap-node-fill);
-  stroke: var(--flow-minimap-node-stroke);
-  stroke-width: var(--flow-minimap-node-stroke-width);
+  fill: var(--flow-minimap-node-fill, var(--slds-g-color-border-1, #e2e2e2));
+  stroke: var(--flow-minimap-node-stroke, transparent);
+  stroke-width: var(--flow-minimap-node-stroke-width, 2);
   /*
      * The minimap is tiny and redraws on every pan frame; skipping
      * anti-aliasing is a measurable win and invisible at this size.
@@ -66,5 +66,5 @@
 }
 
 .flow__minimap-node.selected {
-  fill: var(--flow-minimap-node-fill-selected);
+  fill: var(--flow-minimap-node-fill-selected, var(--slds-g-color-accent-container-3, #555));
 }

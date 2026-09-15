@@ -8,5 +8,5 @@
  */
 
 .flow__node-group {
-  background-color: var(--lwc-flow-node-group-background-color, rgba(240, 240, 240, 0.25));
+  background-color: var(--flow-node-group-background, rgba(240, 240, 240, 0.25));
 }

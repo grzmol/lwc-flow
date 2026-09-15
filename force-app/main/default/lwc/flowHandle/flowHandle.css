@@ -15,10 +15,10 @@
   box-sizing: border-box;
   min-width: 5px;
   min-height: 5px;
-  width: var(--lwc-flow-handle-size, 6px);
-  height: var(--lwc-flow-handle-size, 6px);
-  background-color: var(--lwc-flow-handle-background-color, var(--slds-g-color-neutral-base-10, #1a192b));
-  border: 1px solid var(--lwc-flow-handle-border-color, var(--slds-g-color-neutral-base-100, #ffffff));
+  width: var(--flow-handle-size, 6px);
+  height: var(--flow-handle-size, 6px);
+  background-color: var(--flow-handle-background, var(--slds-g-color-neutral-base-10, #1a192b));
+  border: 1px solid var(--flow-handle-border-color, var(--slds-g-color-neutral-base-100, #ffffff));
   border-radius: 100%;
 }
 

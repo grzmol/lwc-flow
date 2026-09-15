@@ -13,7 +13,9 @@ import {
 } from 'c/flowTypes';
 import { createFlowStore, shallowArrayEqual } from 'c/flowStore';
 import { createPanZoom } from 'c/flowPanZoom';
+import { calculateNodePosition } from 'c/flowDrag';
 import { isInputDOMNode } from 'c/flowDom';
+import { createConnect } from 'c/flowConnect';
 import {
   getViewportForBounds,
   getNodesBounds,
@@ -32,6 +34,10 @@ import {
   reconnectEdge as reconnectEdgeInArray,
   elementToRemoveChange,
 } from 'c/flowGraph';
+import { resolveNodeTypes } from 'c/flowNodeTypes';
+
+/** Flow units an arrow key moves a node when snapping is off, from upstream. */
+const ARROW_KEY_STEP = 5;
 
 /**
  * Coerce an attribute-or-property value to a boolean, keeping `fallback` when
@@ -105,7 +111,11 @@ export default class Flow extends LightningElement {
     this.#store?.setEdges(this.#edges);
   }
 
-  /** Type name to LWC constructor, for custom nodes. */
+  /**
+   * Type name to LWC constructor, for custom nodes. Merged over the built-in
+   * `input`, `default`, `output` and `group` types, so an entry here with one
+   * of those names replaces the shipped component.
+   */
   @api nodeTypes;
 
   /** Type name to `{ getPath, defaults }`, for custom edges. */
@@ -375,6 +385,8 @@ export default class Flow extends LightningElement {
   #keyListeners = null;
   #selectionOrigin = null;
   #selectionPointerId = null;
+  /** @type {import('c/flowConnect').Connect|null} the live connection gesture */
+  #connect = null;
 
   /**
    * CSS transform for the viewport layer.
@@ -425,11 +437,8 @@ export default class Flow extends LightningElement {
       this.#store.subscribe(
         (s) => s.nodesInitialized,
         (initialized) => {
-          if (initialized && this.fitView && !this.#fitViewDone) {
-            this.#fitViewDone = true;
-            this.fitViewport(this.fitViewOptions);
-          }
           if (initialized) {
+            this._tryDeferredFitView();
             this.dispatchEvent(new CustomEvent('nodesinitialized'));
           }
         }
@@ -449,6 +458,7 @@ export default class Flow extends LightningElement {
       // Props may have changed; push them down without rebuilding anything.
       this.#store.update(this._configFromProps());
       this.#panZoom?.update(this._panZoomOptions());
+      this._tryDeferredFitView();
       return;
     }
     this.#initialised = true;
@@ -490,6 +500,28 @@ export default class Flow extends LightningElement {
 
     this._attachKeyHandlers();
     this.dispatchEvent(new CustomEvent('init', { detail: { flowId: this.#flowId } }));
+    this._tryDeferredFitView();
+  }
+
+  /**
+   * Run a pending `fitView` as soon as everything it needs exists.
+   *
+   * Both halves of the condition arrive out of order: a node measures itself in
+   * its own `renderedCallback`, which LWC runs before this component's, so
+   * `nodesInitialized` can flip while the pane is still unmeasured and the
+   * pan/zoom controller unborn. Hence the attempt is made from both places and
+   * is only marked done once it can actually land - the earlier version armed
+   * the flag on the first, doomed attempt and the flow never fitted at all.
+   */
+  _tryDeferredFitView() {
+    const s = this.#store.state;
+
+    if (this.#fitViewDone || !this.fitView || !this.#panZoom || !s.nodesInitialized || !s.width || !s.height) {
+      return;
+    }
+
+    this.#fitViewDone = true;
+    this.fitViewport(this.fitViewOptions);
   }
 
   /**
@@ -588,6 +620,20 @@ export default class Flow extends LightningElement {
    * event filter already honours.
    */
   handlePanePointerDown(event) {
+    /*
+     * A press on a handle arms the connection gesture before this runs: the
+     * handle's own listener fires first and its `connectstart` reaches this
+     * component synchronously. The pane press is what supplies the pointer, so
+     * the gesture is anchored here and the pointer captured, which keeps the
+     * moves coming once the cursor leaves the handle.
+     */
+    if (this.#connect?.isPending) {
+      this.#connect.press(event);
+      this.refs.pane.setPointerCapture?.(event.pointerId);
+      this.#panZoom?.update(this._panZoomOptions());
+      return;
+    }
+
     const s = this.#store.state;
     const startsSelection = s.selectionKeyPressed || (this.selectionOnDrag && event.target === this.refs.pane);
 
@@ -608,6 +654,11 @@ export default class Flow extends LightningElement {
   }
 
   handlePanePointerMove(event) {
+    if (this.#connect?.isPending) {
+      this.#connect.move(event);
+      return;
+    }
+
     if (this.#selectionPointerId !== event.pointerId || !this.#selectionOrigin) {
       return;
     }
@@ -634,6 +685,19 @@ export default class Flow extends LightningElement {
   }
 
   handlePanePointerUp(event) {
+    if (this.#connect?.isPending) {
+      this.refs.pane.releasePointerCapture?.(event.pointerId);
+
+      const connection = this.#connect.end(event);
+
+      this.#panZoom?.update(this._panZoomOptions());
+
+      if (connection) {
+        this.dispatchEvent(new CustomEvent('connect', { detail: connection }));
+      }
+      return;
+    }
+
     if (this.#selectionPointerId !== event.pointerId) {
       return;
     }
@@ -722,7 +786,7 @@ export default class Flow extends LightningElement {
       connectionDragThreshold: this.connectionDragThreshold,
       paneClickDistance: this.paneClickDistance,
       nodeClickDistance: this.nodeClickDistance,
-      nodeTypes: this.nodeTypes ?? {},
+      nodeTypes: resolveNodeTypes(this.nodeTypes),
       edgeTypes: this.edgeTypes ?? {},
       ariaLabelConfig: mergeAriaLabelConfig(this.ariaLabelConfig),
       onError: (id, message) => this.dispatchEvent(new CustomEvent('flowerror', { detail: { id, message } })),
@@ -771,6 +835,158 @@ export default class Flow extends LightningElement {
 
   handleNodesChange(event) {
     this._emitNodeChanges(event.detail.changes);
+  }
+
+  /**
+   * A node reported its measured box and handle positions.
+   *
+   * Only the wrapper can read those - the node lives in a descendant's shadow
+   * root - so the measurement arrives as an event and is applied here, which is
+   * what `nodesInitialized`, edge endpoints and `fitView` all wait for.
+   *
+   * The measurement also leaves as a `dimensions` change, upstream's
+   * behaviour: a consumer that persists the graph gets the measured size, and
+   * one that ignores the change loses nothing, because the internal node
+   * already has it.
+   */
+  handleNodeMeasured(event) {
+    const { id, dimensions, handleBounds } = event.detail;
+
+    if (!this.#store.applyNodeMeasurement(id, dimensions, handleBounds)) {
+      return;
+    }
+
+    this._emitNodeChanges([{ id, type: 'dimensions', dimensions }]);
+  }
+
+  /**
+   * A click on a node selects it.
+   *
+   * The wrapper decides only *whether* a click should select - that depends on
+   * `selectNodesOnDrag` and the drag threshold, which it already knows - and
+   * the selection itself is applied here, because only this component can emit
+   * the changes the consumer folds back in. The event is forwarded either way:
+   * a click that changes no selection is still a click.
+   */
+  handleNodeClick(event) {
+    const { id, select, unselect } = event.detail;
+
+    if (select || unselect) {
+      this._emitClickSelection('node', id, unselect);
+    }
+
+    this.dispatchEvent(new CustomEvent('nodeclick', { detail: { id } }));
+  }
+
+  /** A click on an edge selects it, on the same terms as a node click. */
+  handleEdgeClick(event) {
+    const { id } = event.detail;
+    const edge = this.#store.state.edgeLookup.get(id);
+
+    if (edge?.selectable ?? this.elementsSelectable) {
+      this._emitClickSelection('edge', id, false);
+    }
+
+    this.dispatchEvent(new CustomEvent('edgeclick', { detail: { id } }));
+  }
+
+  /**
+   * Select exactly one element, or add to the selection while the
+   * multi-selection key is held - upstream's `handleNodeClick` precedence.
+   */
+  _emitClickSelection(kind, id, unselect) {
+    const s = this.#store.state;
+
+    if (!s.elementsSelectable) {
+      return;
+    }
+
+    const additive = s.multiSelectionKeyPressed;
+    const nodeIds = additive ? this.#store.getSelectedNodeIds() : new Set();
+    const edgeIds = additive ? this.#store.getSelectedEdgeIds() : new Set();
+    const ids = kind === 'node' ? nodeIds : edgeIds;
+
+    if (unselect) {
+      ids.delete(id);
+    } else {
+      ids.add(id);
+    }
+
+    const { nodeChanges, edgeChanges } = this.#store.getSelectionChangesFor(nodeIds, edgeIds);
+
+    this._emitNodeChanges(nodeChanges);
+    this._emitEdgeChanges(edgeChanges);
+  }
+
+  /**
+   * A drag produced new positions.
+   *
+   * The drag kernel computes them against copies and never touches the node
+   * array, so the move only becomes real once these changes are folded back in
+   * - that is the whole controlled contract. The gesture event is forwarded
+   * too, for consumers that watch the gesture rather than the graph.
+   */
+  handleNodeDrag(event) {
+    this._emitNodeChanges(event.detail.changes ?? []);
+    this.handleForward(event);
+  }
+
+  /**
+   * Arrow-key movement.
+   *
+   * The wrapper reports a direction and the shift multiplier; the step size is
+   * the flow's, so it lives here: upstream's `moveSelectedNodes` moves by the
+   * snap grid when snapping is on and by 5px when it is not.
+   */
+  handleNodeMove(event) {
+    const { dx, dy } = event.detail;
+    const s = this.#store.state;
+    const stepX = dx * (s.snapToGrid ? s.snapGrid[0] : ARROW_KEY_STEP);
+    const stepY = dy * (s.snapToGrid ? s.snapGrid[1] : ARROW_KEY_STEP);
+    const changes = [];
+
+    for (const [id, node] of s.nodeLookup) {
+      if (!node.selected || !(node.draggable ?? s.nodesDraggable)) {
+        continue;
+      }
+
+      const { position } = calculateNodePosition({
+        nodeId: id,
+        nextPosition: {
+          x: node.internals.positionAbsolute.x + stepX,
+          y: node.internals.positionAbsolute.y + stepY,
+        },
+        nodeLookup: s.nodeLookup,
+        nodeOrigin: s.nodeOrigin,
+        nodeExtent: s.nodeExtent,
+        onError: s.onError,
+      });
+
+      changes.push({ id, type: 'position', position, dragging: false });
+    }
+
+    this._emitNodeChanges(changes);
+  }
+
+  /**
+   * A handle was pressed: arm the connection gesture.
+   *
+   * The gesture object is created once and reused, because it holds no state
+   * between gestures and creating it needs the store, which exists from
+   * `connectedCallback` on. `connectstart` leaves for the consumer only once
+   * the drag actually begins, which is where upstream fires `onConnectStart`.
+   */
+  handleConnectStart(event) {
+    this.#connect ??= createConnect({
+      store: this.#store,
+      flowId: this.#flowId,
+      isValidConnection: (connection) => this.isValidConnection?.(connection) ?? true,
+      onStart: (from) => this.dispatchEvent(new CustomEvent('connectstart', { detail: from })),
+      onEnd: (connection, isValid) =>
+        this.dispatchEvent(new CustomEvent('connectend', { detail: { connection, isValid } })),
+    });
+
+    this.#connect.start(event.detail);
   }
 
   handleEdgesChange(event) {

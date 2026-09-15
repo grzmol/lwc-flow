@@ -4,18 +4,10 @@
  *
  * This component owns the element that carries both `flow__node` and `flow__node-<type>`, so the
  * type box lives here rather than in the built-in node bundles - those render only their content.
- * Tunables are exposed on `:host` with SLDS global hooks as their defaults; custom properties
- * inherit through shadow boundaries, so a flow can retheme every node from one place.
+ * The `--flow-node-*` tunables `c/flow` declares are read at their use sites, with SLDS global
+ * hooks and then upstream's literals as the fallbacks. Redeclaring them on this component's own
+ * `:host` would shadow the inherited value and silently defeat every consumer override.
  */
-
-:host {
-  --lwc-flow-node-color: var(--slds-g-color-neutral-base-10, inherit);
-  --lwc-flow-node-border: 1px solid var(--slds-g-color-border-base-1, #1a192b);
-  --lwc-flow-node-background-color: var(--slds-g-color-neutral-base-100, #ffffff);
-  --lwc-flow-node-border-radius: var(--slds-g-radius-border-2, 3px);
-  --lwc-flow-node-box-shadow-hover: 0 1px 4px 1px rgba(0, 0, 0, 0.08);
-  --lwc-flow-node-box-shadow-selected: 0 0 0 0.5px #1a192b;
-}
 
 .flow__node {
   position: absolute;
@@ -48,21 +40,21 @@
 .flow__node-default,
 .flow__node-output,
 .flow__node-group {
-  padding: 10px;
+  padding: var(--flow-node-padding, 10px);
   width: 150px;
-  font-size: 12px;
+  font-size: var(--flow-node-font-size, 12px);
   text-align: center;
-  border-radius: var(--lwc-flow-node-border-radius);
-  color: var(--lwc-flow-node-color);
-  border: var(--lwc-flow-node-border);
-  background-color: var(--lwc-flow-node-background-color);
+  border-radius: var(--flow-node-border-radius, var(--slds-g-radius-border-2, 3px));
+  color: var(--flow-node-color, var(--slds-g-color-on-surface-1, #222));
+  border: var(--flow-node-border, 1px solid var(--slds-g-color-border-2, #1a192b));
+  background-color: var(--flow-node-background, var(--slds-g-color-surface-container-1, #ffffff));
 }
 
 .flow__node-input.selectable:hover,
 .flow__node-default.selectable:hover,
 .flow__node-output.selectable:hover,
 .flow__node-group.selectable:hover {
-  box-shadow: var(--lwc-flow-node-box-shadow-hover);
+  box-shadow: var(--flow-node-box-shadow-hover, 0 1px 4px 1px rgba(0, 0, 0, 0.08));
 }
 
 .flow__node-input.selectable.selected,
@@ -77,5 +69,5 @@
 .flow__node-default.selectable:focus-visible,
 .flow__node-output.selectable:focus-visible,
 .flow__node-group.selectable:focus-visible {
-  box-shadow: var(--lwc-flow-node-box-shadow-selected);
+  box-shadow: var(--flow-node-box-shadow-selected, 0 0 0 0.5px #1a192b);
 }

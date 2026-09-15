@@ -27,7 +27,7 @@
       default-marker-start={defaultMarkerStart}
       default-marker-end={defaultMarkerEnd}
       connection-line-type={connectionLineType}
-      onedgeclick={handleForward}
+      onedgeclick={handleEdgeClick}
       onedgedoubleclick={handleForward}
       onedgecontextmenu={handleForward}
       onedgemouseenter={handleForward}
@@ -39,22 +39,37 @@
       <c-flow-node-renderer
         store={store}
         flow-id={flowId}
+        onnodemeasured={handleNodeMeasured}
         onnodeschange={handleNodesChange}
         onconnect={handleConnect}
-        onnodeclick={handleForward}
+        onconnectstart={handleConnectStart}
+        onnodeclick={handleNodeClick}
         onnodedoubleclick={handleForward}
         onnodecontextmenu={handleForward}
         onnodemouseenter={handleForward}
         onnodemouseleave={handleForward}
         onnodedragstart={handleForward}
-        onnodedrag={handleForward}
-        onnodedragstop={handleForward}
+        onnodedrag={handleNodeDrag}
+        onnodedragstop={handleNodeDrag}
+        onnodemove={handleNodeMove}
       ></c-flow-node-renderer>
     </div>
 
     <!-- Overlays: outside the viewport, so they stay pinned to the pane. -->
-    <c-flow-controls lwc:if={hasControls} store={store} onfitview={handleFitView}></c-flow-controls>
-    <c-flow-minimap lwc:if={hasMinimap} store={store}></c-flow-minimap>
+    <c-flow-controls
+      lwc:if={hasControls}
+      store={store}
+      onfitview={handleFitView}
+      onzoomin={handleForward}
+      onzoomout={handleForward}
+      oninteractivechange={handleForward}
+    ></c-flow-controls>
+    <c-flow-minimap
+      lwc:if={hasMinimap}
+      store={store}
+      onminimapclick={handleForward}
+      onminimapnodeclick={handleForward}
+    ></c-flow-minimap>
     <slot></slot>
   </div>
 </template>

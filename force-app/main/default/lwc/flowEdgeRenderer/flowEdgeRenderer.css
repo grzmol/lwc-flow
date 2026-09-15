@@ -2,19 +2,13 @@
  * Edge layer styling.
  *
  * Shadow DOM prevents one global sheet, so every tunable is a CSS custom
- * property on :host. Values ported from
- * /tmp/xyflow/packages/system/src/styles/style.css and base.css, defaulted
- * through SLDS global hooks where one fits so the flow inherits an org theme.
+ * property, read at its use site with an SLDS global hook and then upstream's
+ * literal as the fallbacks. Declaring the tunables on this component's own
+ * `:host` instead would shadow the value inherited from `c-flow`, and with it
+ * every consumer override. Values ported from
+ * `@xyflow/system/src/styles/style.css` and `base.css`.
  */
 :host {
-  --flow-edge-stroke: var(--slds-g-color-border-2, #b1b1b7);
-  --flow-edge-stroke-width: 1;
-  --flow-edge-stroke-selected: var(--slds-g-color-accent-container-3, #555);
-  --flow-connectionline-stroke: var(--slds-g-color-border-2, #b1b1b7);
-  --flow-connectionline-stroke-width: 1;
-  --flow-connectionline-stroke-invalid: var(--slds-g-color-error-base-40, #ea001e);
-  --flow-connectionline-stroke-valid: var(--slds-g-color-success-base-40, #2e844a);
-
   /*
      * The layer must not intercept pointer events: the pane underneath owns
      * panning and marquee selection. Individual edges opt back in below.
@@ -40,8 +34,8 @@
 }
 
 .flow__edge-path {
-  stroke: var(--flow-edge-stroke);
-  stroke-width: var(--flow-edge-stroke-width);
+  stroke: var(--flow-edge-stroke, var(--slds-g-color-border-2, #b1b1b7));
+  stroke-width: var(--flow-edge-stroke-width, 1);
   fill: none;
   /*
      * The viewport scale is applied to a group, so without this a zoomed-in edge
@@ -53,7 +47,7 @@
 .flow__edge.selected .flow__edge-path,
 .flow__edge:focus .flow__edge-path,
 .flow__edge:focus-visible .flow__edge-path {
-  stroke: var(--flow-edge-stroke-selected);
+  stroke: var(--flow-edge-stroke-selected, var(--slds-g-color-accent-container-3, #555));
 }
 
 .flow__edge-interaction {
@@ -67,28 +61,28 @@
 }
 
 .flow__connectionline {
-  stroke: var(--flow-connectionline-stroke);
-  stroke-width: var(--flow-connectionline-stroke-width);
+  stroke: var(--flow-connectionline-stroke, var(--slds-g-color-border-2, #b1b1b7));
+  stroke-width: var(--flow-connectionline-stroke-width, 1);
   fill: none;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
 }
 
 .flow__connectionline.invalid {
-  stroke: var(--flow-connectionline-stroke-invalid);
+  stroke: var(--flow-connectionline-stroke-invalid, var(--slds-g-color-error-base-40, #ea001e));
 }
 
 .flow__connectionline.valid {
-  stroke: var(--flow-connectionline-stroke-valid);
+  stroke: var(--flow-connectionline-stroke-valid, var(--slds-g-color-success-base-40, #2e844a));
 }
 
 .flow__arrowhead .arrow,
 .flow__arrowhead .arrowclosed {
-  stroke: var(--flow-edge-stroke);
+  stroke: var(--flow-edge-stroke, var(--slds-g-color-border-2, #b1b1b7));
 }
 
 .flow__arrowhead .arrowclosed {
-  fill: var(--flow-edge-stroke);
+  fill: var(--flow-edge-stroke, var(--slds-g-color-border-2, #b1b1b7));
 }
 
 /* Upstream's dashed march for `animated` edges. */

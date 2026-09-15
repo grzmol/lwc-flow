@@ -1,0 +1,97 @@
+<template>
+  <div class="demo">
+    <header class="demo__head">
+      <div>
+        <h1 class="demo__title">lwc-flow</h1>
+        <p class="demo__sub">
+          <a href="https://github.com/xyflow/xyflow">xyflow</a> ported to Lightning Web Components - no d3, no npm
+          packages, no CDN scripts. This page runs the deployable component source unchanged.
+        </p>
+      </div>
+      <a class="demo__repo" href="https://github.com/grzmol/lwc-flow">View on GitHub</a>
+    </header>
+
+    <div class="demo__toolbar">
+      <button class="demo__btn" onclick={handleAddNode}>Add node</button>
+      <button class="demo__btn" onclick={handleDeleteSelected} disabled={hasNoSelection}>Delete selected</button>
+      <button class="demo__btn" onclick={handleFitView}>Fit view</button>
+      <button class="demo__btn" onclick={handleReset}>Reset</button>
+
+      <label class="demo__field">
+        Edge type
+        <select class="demo__select" onchange={handleEdgeTypeChange}>
+          <option value="smoothstep" selected>smoothstep</option>
+          <option value="default">bezier</option>
+          <option value="simplebezier">simple bezier</option>
+          <option value="straight">straight</option>
+          <option value="step">step</option>
+          <option value="wavy">wavy (custom)</option>
+        </select>
+      </label>
+
+      <label class="demo__check">
+        <input type="checkbox" checked={snapToGrid} onchange={handleSnapChange} />
+        Snap to grid
+      </label>
+      <label class="demo__check">
+        <input type="checkbox" checked={showBackground} onchange={handleBackgroundChange} />
+        Background
+      </label>
+      <label class="demo__check">
+        <input type="checkbox" checked={showMinimap} onchange={handleMinimapChange} />
+        Minimap
+      </label>
+    </div>
+
+    <div class="demo__body">
+      <section class="demo__canvas">
+        <c-flow
+          lwc:ref="flow"
+          nodes={nodes}
+          edges={edges}
+          node-types={nodeTypes}
+          edge-types={edgeTypes}
+          fit-view={fitView}
+          fit-view-options={fitViewOptions}
+          show-background={showBackground}
+          show-controls={showControls}
+          show-minimap={showMinimap}
+          snap-to-grid={snapToGrid}
+          onnodeschange={handleNodesChange}
+          onedgeschange={handleEdgesChange}
+          onconnect={handleConnect}
+          onmove={handleMove}
+          onnodesinitialized={handleNodesInitialized}
+          onflowerror={handleFlowError}
+        >
+          <c-flow-panel position="top-right">
+            <span class="demo__hint">
+              Drag a handle to connect · shift-drag the pane to marquee-select · Backspace deletes
+            </span>
+          </c-flow-panel>
+        </c-flow>
+      </section>
+
+      <aside class="demo__side">
+        <div class="demo__stats">
+          <div class="demo__stat"><span class="demo__stat-value">{nodeCount}</span><span>nodes</span></div>
+          <div class="demo__stat"><span class="demo__stat-value">{edgeCount}</span><span>edges</span></div>
+          <div class="demo__stat"><span class="demo__stat-value">{selectedCount}</span><span>selected</span></div>
+          <div class="demo__stat"><span class="demo__stat-value">{zoomLabel}</span><span>zoom</span></div>
+        </div>
+
+        <h2 class="demo__side-title">Change log</h2>
+        <p class="demo__side-note">
+          The flow never owns the graph. Every interaction leaves as a change array that this page
+          folds back in with <code>applyNodeChanges</code> and <code>applyEdgeChanges</code>.
+        </p>
+        <ul class="demo__log">
+          <template for:each={logEntries} for:item="entry">
+            <li key={entry.key} class="demo__log-row">{entry.text}</li>
+          </template>
+        </ul>
+        <p lwc:if={hasNoSelection} class="demo__side-note">Nothing selected. Click a node or an edge.</p>
+      </aside>
+    </div>
+  </div>
+</template>

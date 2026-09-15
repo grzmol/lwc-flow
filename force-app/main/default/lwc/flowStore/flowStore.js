@@ -290,6 +290,41 @@ class FlowStore {
   }
 
   /**
+   * Apply a node's DOM measurement to its internal node.
+   *
+   * Upstream's `updateNodeInternals` in store terms. The internal node is
+   * mutated rather than rebuilt, exactly as upstream mutates its `nodeLookup`
+   * entry: the consumer's node object is the one thing that must not change,
+   * and `measured` plus `internals.handleBounds` live on the internal copy.
+   *
+   * Re-adopting afterwards is what flips `nodesInitialized`, and node adoption
+   * keeps an internal node whose `userNode` is unchanged, so the measurement
+   * just written survives the pass.
+   *
+   * A zero measurement is refused, as upstream refuses one: a node inside a
+   * collapsed or `display: none` subtree measures 0x0, and letting that land
+   * would throw away a size the consumer declared and break every rect the
+   * node takes part in.
+   * @param {string} id
+   * @param {{width: number, height: number}} dimensions
+   * @param {{source: Array<*>|null, target: Array<*>|null}} handleBounds
+   * @returns {boolean} whether the measurement was applied
+   */
+  applyNodeMeasurement(id, dimensions, handleBounds) {
+    const internalNode = this.state.nodeLookup.get(id);
+
+    if (!internalNode || !dimensions?.width || !dimensions?.height) {
+      return false;
+    }
+
+    internalNode.measured = { width: dimensions.width, height: dimensions.height };
+    internalNode.internals.handleBounds = handleBounds;
+    this.refreshNodeInternals();
+
+    return true;
+  }
+
+  /**
    * Look up an internal node.
    * @param {string} id
    * @returns {*|undefined}

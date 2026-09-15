@@ -1,0 +1,27 @@
+<template lwc:render-mode="light">
+  <c-flow-handle
+    type="target"
+    position={targetPosition}
+    store={store}
+    node-id={id}
+    flow-id={flowId}
+    is-connectable={isConnectable}
+    onconnectstart={handleConnectStart}
+  ></c-flow-handle>
+
+  <div class={pillClass}>
+    <span class="demo-pill__dot"></span>
+    <span class="demo-pill__label">{label}</span>
+    <span lwc:if={hasBadge} class="demo-pill__badge">{badge}</span>
+  </div>
+
+  <c-flow-handle
+    type="source"
+    position={sourcePosition}
+    store={store}
+    node-id={id}
+    flow-id={flowId}
+    is-connectable={isConnectable}
+    onconnectstart={handleConnectStart}
+  ></c-flow-handle>
+</template>

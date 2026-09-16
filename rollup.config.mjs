@@ -28,8 +28,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 
 const COMPONENT_DIR = path.join(root, 'force-app/main/default/lwc');
 const DEMO_MODULES_DIR = path.join(root, 'docs/modules');
-const OUT_DIR = path.join(root, 'dist/docs');
-const STATIC_FILES = ['index.html', 'demo.css', '.nojekyll'];
+const OUT_DIR = path.join(root, 'docs');
 
 /** `c/flow` -> `force-app/main/default/lwc/flow/flow.js`, for every bundle. */
 function namespaceAliases(dir, namespace) {
@@ -61,24 +60,8 @@ const defineNodeEnv = {
   },
 };
 
-/** Copy the page shell beside the bundle; nothing here needs transforming. */
-const copyStatic = {
-  name: 'copy-demo-static',
-  writeBundle() {
-    for (const file of STATIC_FILES) {
-      const from = path.join(root, 'docs', file);
-
-      if (fs.existsSync(from)) {
-        fs.copyFileSync(from, path.join(OUT_DIR, file));
-      } else {
-        fs.writeFileSync(path.join(OUT_DIR, file), '');
-      }
-    }
-  },
-};
-
 export default {
-  input: path.join(root, 'demo/main.js'),
+  input: path.join(root, 'docs/main.js'),
   output: {
     file: path.join(OUT_DIR, 'demo.js'),
     format: 'esm',
@@ -99,6 +82,5 @@ export default {
       exclude: ['**/node_modules/**'],
     }),
     defineNodeEnv,
-    copyStatic,
   ],
 };

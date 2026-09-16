@@ -17,7 +17,7 @@
     "format": "prettier --write \"**/*.{js,html,css,json,md,yml,yaml,xml}\"",
     "format:verify": "prettier --check \"**/*.{js,html,css,json,md,yml,yaml,xml}\"",
     "demo:build": "rollup --config rollup.config.mjs",
-    "demo": "npm run demo:build && node demo/serve.mjs",
+    "demo": "npm run demo:build && node docs/serve.mjs",
     "vf:local": "node \"${CLAUDE_PLUGIN_ROOT:-../vibe-force}/scripts/checks/vf-check.mjs\" local",
     "vf:verify": "node \"${CLAUDE_PLUGIN_ROOT:-../vibe-force}/scripts/checks/vf-check.mjs\" verify"
   },

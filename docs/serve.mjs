@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '../dist/demo');
+const DIST = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT ?? 8080);
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -19,8 +19,8 @@ const TYPES = {
   '.map': 'application/json; charset=utf-8',
 };
 
-if (!fs.existsSync(DIST)) {
-  console.error(`No build at ${DIST}. Run "npm run demo:build" first.`);
+if (!fs.existsSync(path.join(DIST, 'demo.js'))) {
+  console.error(`No build at ${DIST}/demo.js. Run "npm run demo:build" first.`);
   process.exit(1);
 }
 

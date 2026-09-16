@@ -192,4 +192,5 @@ transform kernels are executed side by side with the upstream TypeScript (and wi
 
 ## Licence
 
-MIT. Ported from [xyflow](https://github.com/xyflow/xyflow), also MIT.
+[MIT](LICENSE). Ported from [xyflow](https://github.com/xyflow/xyflow), also MIT; the upstream
+notice is kept in [`LICENSE`](LICENSE).

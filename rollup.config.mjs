@@ -27,8 +27,8 @@ const require = createRequire(import.meta.url);
 const root = path.dirname(fileURLToPath(import.meta.url));
 
 const COMPONENT_DIR = path.join(root, 'force-app/main/default/lwc');
-const DEMO_MODULES_DIR = path.join(root, 'demo/modules');
-const OUT_DIR = path.join(root, 'dist/demo');
+const DEMO_MODULES_DIR = path.join(root, 'docs/modules');
+const OUT_DIR = path.join(root, 'dist/docs');
 const STATIC_FILES = ['index.html', 'demo.css', '.nojekyll'];
 
 /** `c/flow` -> `force-app/main/default/lwc/flow/flow.js`, for every bundle. */
@@ -66,7 +66,7 @@ const copyStatic = {
   name: 'copy-demo-static',
   writeBundle() {
     for (const file of STATIC_FILES) {
-      const from = path.join(root, 'demo', file);
+      const from = path.join(root, 'docs', file);
 
       if (fs.existsSync(from)) {
         fs.copyFileSync(from, path.join(OUT_DIR, file));

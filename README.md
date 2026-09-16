@@ -1,4 +1,4 @@
-# lwc-flow
+# LWC Port of React Flow
 
 A node-based flow editor for Salesforce Lightning Web Components. A port of
 [xyflow](https://github.com/xyflow/xyflow) (`@xyflow/react` 12.11.6, `@xyflow/system` 0.0.82) with

@@ -1,0 +1,50 @@
+<template lwc:render-mode="light">
+  <c-flow-handle
+    type="target"
+    position={targetPosition}
+    store={store}
+    node-id={id}
+    flow-id={flowId}
+    is-connectable={isConnectable}
+    onconnectstart={handleConnectStart}
+  ></c-flow-handle>
+
+  <article class={cardClass}>
+    <header class="dcard__head">
+      <span class={iconClass}>{icon}</span>
+      <span class="dcard__heading">
+        <span class="dcard__title">{title}</span>
+        <span lwc:if={hasMeta} class="dcard__meta">{meta}</span>
+      </span>
+    </header>
+
+    <div lwc:if={hasMetrics} class="dcard__metrics">
+      <template for:each={metricRows} for:item="metric">
+        <div key={metric.key} class="dcard__metric">
+          <span class="dcard__metric-label">{metric.label}</span>
+          <span class="dcard__metric-value">{metric.value}</span>
+          <span class={metric.deltaClass}>{metric.delta}</span>
+        </div>
+      </template>
+    </div>
+
+    <div lwc:if={hasProgress} class="dcard__bar">
+      <span class={barFillClass} style={barStyle}></span>
+    </div>
+
+    <footer lwc:if={hasFoot} class="dcard__foot">
+      <span lwc:if={hasFooter} class="dcard__footer">{footer}</span>
+      <span lwc:if={hasChip} class={chipClass}>{chip}</span>
+    </footer>
+  </article>
+
+  <c-flow-handle
+    type="source"
+    position={sourcePosition}
+    store={store}
+    node-id={id}
+    flow-id={flowId}
+    is-connectable={isConnectable}
+    onconnectstart={handleConnectStart}
+  ></c-flow-handle>
+</template>

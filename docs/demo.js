@@ -6751,7 +6751,7 @@ seal(LightningElement.prototype);
 function stylesheet$e(token, useActualHostSelector, useNativeDirPseudoclass) {
   var shadowSelector = token ? ("[" + token + "]") : "";
   var hostSelector = token ? ("[" + token + "-host]") : "";
-  return ((useActualHostSelector ? ":host {" : hostSelector + " {")) + "display: block;min-height: 100vh;padding: 1.5rem clamp(1rem, 4vw, 3rem) 2.5rem;box-sizing: border-box;color: #e6e8ef;}.demo__head" + shadowSelector + " {display: flex;flex-wrap: wrap;align-items: flex-start;justify-content: space-between;gap: 1rem;margin-bottom: 1.25rem;}.demo__title" + shadowSelector + " {margin: 0;font-size: 1.75rem;letter-spacing: -0.02em;}.demo__sub" + shadowSelector + " {margin: 0.35rem 0 0;max-width: 62ch;font-size: 0.875rem;line-height: 1.5;color: #9aa1b4;}.demo__sub" + shadowSelector + " a" + shadowSelector + ",.demo__repo" + shadowSelector + " {color: #8f9dff;}.demo__repo" + shadowSelector + " {padding: 0.5rem 0.9rem;border: 1px solid #2c3040;border-radius: 0.5rem;font-size: 0.8125rem;text-decoration: none;white-space: nowrap;}.demo__repo:hover" + shadowSelector + " {border-color: #5b6cff;}.demo__toolbar" + shadowSelector + " {display: flex;flex-wrap: wrap;align-items: center;gap: 0.5rem 0.75rem;margin-bottom: 0.9rem;font-size: 0.8125rem;}.demo__btn" + shadowSelector + " {padding: 0.45rem 0.8rem;border: 1px solid #2c3040;border-radius: 0.5rem;background: #171a24;color: inherit;font: inherit;cursor: pointer;}.demo__btn:hover:not(:disabled)" + shadowSelector + " {border-color: #5b6cff;}.demo__btn:disabled" + shadowSelector + " {opacity: 0.45;cursor: not-allowed;}.demo__field" + shadowSelector + ",.demo__check" + shadowSelector + " {display: inline-flex;align-items: center;gap: 0.4rem;color: #9aa1b4;}.demo__select" + shadowSelector + " {padding: 0.35rem 0.5rem;border: 1px solid #2c3040;border-radius: 0.4rem;background: #171a24;color: #e6e8ef;font: inherit;}.demo__body" + shadowSelector + " {display: grid;grid-template-columns: minmax(0, 1fr) 20rem;gap: 1rem;align-items: stretch;}.demo__canvas" + shadowSelector + " {height: min(72vh, 46rem);border: 1px solid #2c3040;border-radius: 0.75rem;overflow: hidden;background: #fff;}c-flow" + shadowSelector + " {display: block;height: 100%;--flow-node-background: #ffffff;--flow-node-color: #1b1f3b;--flow-node-border: 1px solid #c9cddb;--flow-node-border-radius: 0.375rem;--flow-node-box-shadow-selected: 0 0 0 1.5px #5b6cff;--flow-edge-stroke: #8d93a8;--flow-edge-stroke-selected: #5b6cff;--flow-handle-background: #5b6cff;--flow-background-pattern-color: #d7dbe6;--flow-minimap-node-fill: #c9cddb;--flow-minimap-node-fill-selected: #5b6cff;}.demo__hint" + shadowSelector + " {display: inline-block;padding: 0.3rem 0.6rem;border-radius: 0.4rem;background: rgb(15 17 21 / 82%);color: #e6e8ef;font-size: 0.75rem;}.demo__side" + shadowSelector + " {display: flex;flex-direction: column;gap: 0.75rem;padding: 1rem;border: 1px solid #2c3040;border-radius: 0.75rem;background: #12141c;min-width: 0;}.demo__stats" + shadowSelector + " {display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));gap: 0.5rem;}.demo__stat" + shadowSelector + " {display: flex;flex-direction: column;padding: 0.5rem 0.6rem;border: 1px solid #22252f;border-radius: 0.5rem;font-size: 0.6875rem;text-transform: uppercase;letter-spacing: 0.06em;color: #9aa1b4;}.demo__stat-value" + shadowSelector + " {font-size: 1.25rem;font-weight: 600;letter-spacing: -0.01em;text-transform: none;color: #e6e8ef;}.demo__side-title" + shadowSelector + " {margin: 0.25rem 0 0;font-size: 0.75rem;text-transform: uppercase;letter-spacing: 0.08em;color: #9aa1b4;}.demo__side-note" + shadowSelector + " {margin: 0;font-size: 0.75rem;line-height: 1.5;color: #767d92;}.demo__side-note" + shadowSelector + " code" + shadowSelector + " {color: #8f9dff;}.demo__log" + shadowSelector + " {margin: 0;padding: 0;list-style: none;display: flex;flex-direction: column;gap: 0.25rem;font-family: ui-monospace, SFMono-Regular, Menlo, monospace;font-size: 0.6875rem;}.demo__log-row" + shadowSelector + " {padding: 0.3rem 0.45rem;border-radius: 0.35rem;background: #171a24;color: #c3c8d8;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}@media (max-width: 60rem) {.demo__body" + shadowSelector + " {grid-template-columns: minmax(0, 1fr);}.demo__canvas" + shadowSelector + " {height: 60vh;}}";
+  return [((useActualHostSelector ? ":host {" : hostSelector + " {")), "display: block;min-height: 100vh;padding: 1.75rem clamp(1rem, 4vw, 3rem) 2.5rem;box-sizing: border-box;color: var(--text);}.demo__head", shadowSelector, " {display: flex;flex-wrap: wrap;align-items: flex-start;justify-content: space-between;gap: 1rem;margin-bottom: 1.25rem;}.demo__brand", shadowSelector, " {display: flex;align-items: flex-start;gap: 0.75rem;}.demo__mark", shadowSelector, " {flex: none;display: grid;place-items: center;width: 2.5rem;height: 2.5rem;border-radius: 0.625rem;background: var(--accent-soft);color: var(--accent);}.demo__mark", shadowSelector, " svg", shadowSelector, " {width: 1.5rem;height: auto;}.demo__title", shadowSelector, " {margin: 0;font-size: 1.5rem;letter-spacing: -0.02em;}.demo__sub", shadowSelector, " {margin: 0.25rem 0 0;max-width: 62ch;font-size: 0.8125rem;line-height: 1.5;color: var(--muted);}.demo__sub", shadowSelector, " a", shadowSelector, " {color: var(--accent-strong);}.demo__actions", shadowSelector, " {display: flex;align-items: center;gap: 0.5rem;}.demo__repo", shadowSelector, " {padding: 0.5rem 0.9rem;border: 1px solid var(--border-strong);border-radius: 0.5rem;background: var(--surface);box-shadow: var(--shadow-1);color: var(--text);font-size: 0.8125rem;font-weight: 500;text-decoration: none;white-space: nowrap;}.demo__repo:hover", shadowSelector, " {border-color: var(--accent-line);}.demo__theme", shadowSelector, " {display: grid;place-items: center;width: 2.25rem;height: 2.25rem;padding: 0;border: 1px solid var(--border-strong);border-radius: 0.5rem;background: var(--surface);box-shadow: var(--shadow-1);color: var(--text);font-size: 0.9rem;cursor: pointer;}.demo__theme:hover", shadowSelector, " {border-color: var(--accent-line);}.demo__toolbar", shadowSelector, " {display: flex;flex-wrap: wrap;align-items: center;gap: 0.5rem 0.75rem;margin-bottom: 0.9rem;font-size: 0.8125rem;}.demo__btn", shadowSelector, " {padding: 0.45rem 0.8rem;border: 1px solid var(--border-strong);border-radius: 0.5rem;background: var(--surface);box-shadow: var(--shadow-1);color: var(--text);font: inherit;font-weight: 500;cursor: pointer;}.demo__btn:hover:not(:disabled)", shadowSelector, " {border-color: var(--accent-line);}.demo__btn:disabled", shadowSelector, " {opacity: 0.45;cursor: not-allowed;}.demo__btn_primary", shadowSelector, " {border-color: var(--accent);background: var(--accent);color: #fff;}.demo__btn_primary:hover:not(:disabled)", shadowSelector, " {filter: brightness(0.94);}.demo__btn_block", shadowSelector, " {width: 100%;}.demo__sep", shadowSelector, " {width: 1px;height: 1.25rem;background: var(--border);}.demo__field", shadowSelector, ",.demo__check", shadowSelector, " {display: inline-flex;align-items: center;gap: 0.4rem;color: var(--muted);}.demo__check", shadowSelector, " input", shadowSelector, " {accent-color: var(--accent);}.demo__select", shadowSelector, ",.demo__input", shadowSelector, " {padding: 0.35rem 0.5rem;border: 1px solid var(--border-strong);border-radius: 0.4rem;background: var(--surface);color: var(--text);font: inherit;}.demo__body", shadowSelector, " {display: grid;grid-template-columns: minmax(0, 1fr) 19rem;gap: 1rem;align-items: stretch;}.demo__canvas", shadowSelector, " {height: min(74vh, 48rem);border: 1px solid var(--border);border-radius: 0.875rem;overflow: hidden;background: var(--surface);box-shadow: var(--shadow-1);}c-flow", shadowSelector, " {display: block;height: 100%;--flow-node-background: var(--surface);--flow-node-color: var(--text);--flow-node-border: 1px solid var(--border);--flow-node-border-radius: 0.625rem;--flow-node-font-size: 0.8125rem;--flow-node-padding: 0.625rem 0.75rem;--flow-node-box-shadow-selected: 0 0 0 2px var(--accent-line);--flow-node-group-background: color-mix(in srgb, var(--accent) 5%, transparent);--flow-edge-stroke: var(--edge);--flow-edge-stroke-width: 1.5;--flow-edge-stroke-selected: var(--accent);--flow-connectionline-stroke: var(--accent);--flow-handle-background: var(--surface);--flow-handle-border-color: var(--accent-line);--flow-handle-size: 7px;--flow-background-pattern-color: var(--grid);--flow-selection-background: color-mix(in srgb, var(--accent) 8%, transparent);--flow-selection-border: 1px dashed var(--accent-line);--flow-minimap-background: color-mix(in srgb, var(--surface) 85%, transparent);--flow-minimap-node-fill: var(--border);--flow-minimap-node-fill-selected: var(--accent);--flow-minimap-mask-fill: color-mix(in srgb, var(--text) 6%, transparent);--flow-controls-button-background-color: var(--surface);--flow-controls-button-background-color-hover: var(--surface-2);--flow-controls-button-color: var(--muted);--flow-controls-button-border-color: var(--border);--flow-controls-box-shadow: var(--shadow-1);}.demo__hint", shadowSelector, " {display: inline-block;padding: 0.3rem 0.6rem;border: 1px solid var(--border);border-radius: 0.4rem;background: var(--surface);box-shadow: var(--shadow-1);color: var(--muted);font-size: 0.6875rem;}.demo__side", shadowSelector, " {display: flex;flex-direction: column;gap: 0.75rem;padding: 1rem;border: 1px solid var(--border);border-radius: 0.875rem;background: var(--surface);box-shadow: var(--shadow-1);min-width: 0;}.demo__stats", shadowSelector, " {display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));gap: 0.5rem;}.demo__stat", shadowSelector, " {display: flex;flex-direction: column;padding: 0.5rem 0.6rem;border: 1px solid var(--border);border-radius: 0.5rem;background: var(--surface-2);font-size: 0.625rem;text-transform: uppercase;letter-spacing: 0.06em;color: var(--faint);}.demo__stat-value", shadowSelector, " {font-size: 1.25rem;font-weight: 600;letter-spacing: -0.01em;text-transform: none;color: var(--text);}.demo__side-title", shadowSelector, " {margin: 0.25rem 0 0;font-size: 0.6875rem;text-transform: uppercase;letter-spacing: 0.08em;color: var(--faint);}.demo__side-note", shadowSelector, " {margin: 0;font-size: 0.75rem;line-height: 1.5;color: var(--muted);}.demo__side-note", shadowSelector, " code", shadowSelector, " {color: var(--accent-strong);font-size: 0.6875rem;}.demo__inspect", shadowSelector, " {display: flex;flex-direction: column;gap: 0.5rem;}.demo__rename", shadowSelector, " {display: flex;flex-direction: column;gap: 0.25rem;font-size: 0.625rem;text-transform: uppercase;letter-spacing: 0.06em;color: var(--faint);}.demo__props", shadowSelector, " {display: flex;flex-direction: column;gap: 0.125rem;margin: 0;font-size: 0.6875rem;}.demo__prop", shadowSelector, " {display: flex;justify-content: space-between;gap: 0.5rem;padding: 0.2rem 0.4rem;border-radius: 0.3rem;background: var(--surface-2);}.demo__prop", shadowSelector, " dt", shadowSelector, " {color: var(--faint);}.demo__prop", shadowSelector, " dd", shadowSelector, " {margin: 0;font-family: ui-monospace, SFMono-Regular, Menlo, monospace;color: var(--text);overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}.demo__tones", shadowSelector, " {display: flex;gap: 0.375rem;}.demo__tone", shadowSelector, " {width: 1.5rem;height: 1.5rem;padding: 0;border: 1px solid var(--border);border-radius: 0.375rem;background: var(--surface);cursor: pointer;}.demo__tone:hover", shadowSelector, " {border-color: var(--accent-line);}.demo__tone", shadowSelector, " span", shadowSelector, " {display: block;width: 100%;height: 100%;border-radius: 0.25rem;}.demo__tone", shadowSelector, " .violet", shadowSelector, " {background: var(--tone-violet);}.demo__tone", shadowSelector, " .blue", shadowSelector, " {background: var(--tone-blue);}.demo__tone", shadowSelector, " .green", shadowSelector, " {background: var(--tone-green);}.demo__tone", shadowSelector, " .amber", shadowSelector, " {background: var(--tone-amber);}.demo__tone", shadowSelector, " .rose", shadowSelector, " {background: var(--tone-rose);}.demo__log", shadowSelector, " {margin: 0;padding: 0;list-style: none;display: flex;flex-direction: column;gap: 0.25rem;font-family: ui-monospace, SFMono-Regular, Menlo, monospace;font-size: 0.6875rem;}.demo__log-row", shadowSelector, " {padding: 0.3rem 0.45rem;border-radius: 0.35rem;background: var(--surface-2);color: var(--muted);overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}@media (max-width: 60rem) {.demo__body", shadowSelector, " {grid-template-columns: minmax(0, 1fr);}.demo__canvas", shadowSelector, " {height: 60vh;}}.demo__form", shadowSelector, " {display: flex;flex-direction: column;gap: 0.3rem;max-height: 22rem;overflow-y: auto;padding-right: 0.25rem;}.demo__row", shadowSelector, " {display: grid;grid-template-columns: 5.5rem minmax(0, 1fr);align-items: center;gap: 0.4rem;font-size: 0.6875rem;color: var(--faint);}.demo__row", shadowSelector, " .demo__input", shadowSelector, ",.demo__row", shadowSelector, " .demo__select", shadowSelector, " {width: 100%;min-width: 0;padding: 0.25rem 0.4rem;font-size: 0.6875rem;}.demo__flags", shadowSelector, " {display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));gap: 0.2rem 0.5rem;margin-top: 0.3rem;font-size: 0.6875rem;}.demo__form-actions", shadowSelector, " {display: flex;gap: 0.4rem;margin-top: 0.4rem;}.demo__form-actions", shadowSelector, " .demo__btn", shadowSelector, " {flex: 1;padding: 0.35rem 0.5rem;font-size: 0.75rem;}"].join('');
   /*LWC compiler v9.4.3*/
 }
 var _implicitStylesheets$e = [stylesheet$e];
@@ -6764,16 +6764,16 @@ function stylesheet$d(token, useActualHostSelector, useNativeDirPseudoclass) {
 }
 var _implicitStylesheets$d = [stylesheet$d];
 
-const stc0$9 = {
+const stc0$a = {
   key: 1
 };
-const stc1$5 = [];
+const stc1$6 = [];
 function tmpl$f($api, $cmp, $slotset, $ctx) {
   const {ncls: api_normalize_class_name, s: api_slot, h: api_element} = $api;
   return [api_element("div", {
     className: api_normalize_class_name($cmp.panelClass),
     key: 0
-  }, [api_slot("", stc0$9, stc1$5, $slotset)])];
+  }, [api_slot("", stc0$a, stc1$6, $slotset)])];
   /*LWC compiler v9.4.3*/
 }
 var _tmpl$f = registerTemplate(tmpl$f);
@@ -6863,7 +6863,7 @@ var _implicitStylesheets$b = [stylesheet$b];
 const $fragment1$a = parseSVGFragment`<circle${"c0"}${"a0:cx"}${"a0:cy"}${"a0:r"}${2}/>`;
 const $fragment2$6 = parseSVGFragment`<path${"c0"}${"a0:stroke-width"}${"a0:d"}${2}/>`;
 const $fragment3$5 = parseSVGFragment`<rect x="0" y="0" width="100%" height="100%"${3}/>`;
-const stc0$8 = {
+const stc0$9 = {
   "aria-hidden": "true"
 };
 function tmpl$e($api, $cmp, $slotset, $ctx) {
@@ -6871,7 +6871,7 @@ function tmpl$e($api, $cmp, $slotset, $ctx) {
   return [api_element("svg", {
     className: api_normalize_class_name($cmp.svgClass),
     style: $cmp.svgStyle,
-    attrs: stc0$8,
+    attrs: stc0$9,
     key: 0,
     svg: true
   }, [api_element("pattern", {
@@ -9263,9 +9263,9 @@ var _implicitStylesheets$a = [stylesheet$a];
 const $fragment1$9 = parseSVGFragment`<polyline${"c0"}${"s0"} stroke-linecap="round" stroke-linejoin="round"${"a0:points"}${2}/>`;
 const $fragment2$5 = parseSVGFragment`<polyline${"c0"}${"s0"} stroke-linecap="round" stroke-linejoin="round" fill="none"${"a0:points"}${2}/>`;
 const $fragment3$4 = parseSVGFragment`<path class="flow__edge-interaction${0}"${"a0:d"}${"a0:stroke-width"} stroke="transparent" fill="none"${2}/>`;
-const $fragment4$2 = parseSVGFragment`<path${"c0"}${"a0:d"}${"s0"}${"a0:data-edge-id"} fill="none"${2}/>`;
-const $fragment5$2 = parseSVGFragment`<path${"c0"}${"a0:d"} fill="none"${2}/>`;
-const stc0$7 = {
+const $fragment4$3 = parseSVGFragment`<path${"c0"}${"a0:d"}${"s0"}${"a0:data-edge-id"} fill="none"${2}/>`;
+const $fragment5$3 = parseSVGFragment`<path${"c0"}${"a0:d"} fill="none"${2}/>`;
+const stc0$8 = {
   classMap: {
     "flow__edges": true
   },
@@ -9275,22 +9275,22 @@ const stc0$7 = {
   key: 0,
   svg: true
 };
-const stc1$4 = {
+const stc1$5 = {
   key: 1,
   svg: true
 };
-const stc2$4 = {
+const stc2$5 = {
   "flow__arrowhead": true
 };
-const stc3$2 = {
+const stc3$3 = {
   "flow__edges-viewport": true
 };
 function tmpl$d($api, $cmp, $slotset, $ctx) {
   const {gid: api_scoped_id, k: api_key, ncls: api_normalize_class_name, sp: api_static_part, st: api_static_fragment, fr: api_fragment, h: api_element, i: api_iterator, b: api_bind, f: api_flatten} = $api;
   const {_m0} = $ctx;
-  return [api_element("svg", stc0$7, [api_element("defs", stc1$4, api_iterator($cmp.markerRows, function (marker) {
+  return [api_element("svg", stc0$8, [api_element("defs", stc1$5, api_iterator($cmp.markerRows, function (marker) {
     return api_element("marker", {
-      classMap: stc2$4,
+      classMap: stc2$5,
       attrs: {
         "id": api_scoped_id(marker.id),
         "markerWidth": marker.markerWidth,
@@ -9315,7 +9315,7 @@ function tmpl$d($api, $cmp, $slotset, $ctx) {
       }
     }, null)])], 0)]);
   })), api_element("g", {
-    classMap: stc3$2,
+    classMap: stc3$3,
     style: $cmp.viewportStyle,
     key: 8,
     svg: true
@@ -9340,7 +9340,7 @@ function tmpl$d($api, $cmp, $slotset, $ctx) {
         "d": edge.path,
         "stroke-width": edge.interactionWidth
       }
-    }, null)])], 0) : null, api_static_fragment($fragment4$2, 14, [api_static_part(0, {
+    }, null)])], 0) : null, api_static_fragment($fragment4$3, 14, [api_static_part(0, {
       className: api_normalize_class_name(edge.pathClass),
       style: edge.style,
       attrs: {
@@ -9348,7 +9348,7 @@ function tmpl$d($api, $cmp, $slotset, $ctx) {
         "data-edge-id": edge.id
       }
     }, null)])]);
-  }), $cmp.hasConnection ? api_fragment(15, [api_static_fragment($fragment5$2, 17, [api_static_part(0, {
+  }), $cmp.hasConnection ? api_fragment(15, [api_static_fragment($fragment5$3, 17, [api_static_part(0, {
     className: api_normalize_class_name($cmp.connectionPath.lineClass),
     attrs: {
       "d": $cmp.connectionPath.path
@@ -10051,7 +10051,7 @@ function getEdgePathData(edge, geometry, edgeTypes, onError) {
 
 const $fragment1$8 = parseSVGFragment`<polyline${"c0"}${"s0"} stroke-linecap="round" stroke-linejoin="round"${"a0:points"}${2}/>`;
 const $fragment2$4 = parseSVGFragment`<polyline${"c0"}${"s0"} stroke-linecap="round" fill="none" stroke-linejoin="round"${"a0:points"}${2}/>`;
-const stc0$6 = {
+const stc0$7 = {
   classMap: {
     "flow__marker-defs": true
   },
@@ -10061,18 +10061,18 @@ const stc0$6 = {
   key: 0,
   svg: true
 };
-const stc1$3 = {
+const stc1$4 = {
   key: 1,
   svg: true
 };
-const stc2$3 = {
+const stc2$4 = {
   "flow__arrowhead": true
 };
 function tmpl$c($api, $cmp, $slotset, $ctx) {
   const {gid: api_scoped_id, k: api_key, ncls: api_normalize_class_name, sp: api_static_part, st: api_static_fragment, fr: api_fragment, h: api_element, i: api_iterator} = $api;
-  return [api_element("svg", stc0$6, [api_element("defs", stc1$3, api_iterator($cmp.resolvedMarkers, function (marker) {
+  return [api_element("svg", stc0$7, [api_element("defs", stc1$4, api_iterator($cmp.resolvedMarkers, function (marker) {
     return api_element("marker", {
-      classMap: stc2$3,
+      classMap: stc2$4,
       attrs: {
         "id": api_scoped_id(marker.id),
         "markerWidth": marker.markerWidth,
@@ -12240,7 +12240,7 @@ const __lwc_component_class_internal$b = registerComponent(FlowNodeWrapper, {
   apiVersion: 66
 });
 
-const stc0$5 = {
+const stc0$6 = {
   classMap: {
     "flow__nodes": true
   },
@@ -12249,7 +12249,7 @@ const stc0$5 = {
 function tmpl$a($api, $cmp, $slotset, $ctx) {
   const {k: api_key, b: api_bind, c: api_custom_element, i: api_iterator, h: api_element} = $api;
   const {_m0} = $ctx;
-  return [api_element("div", stc0$5, api_iterator($cmp.nodeIds, function (id) {
+  return [api_element("div", stc0$6, api_iterator($cmp.nodeIds, function (id) {
     return api_custom_element("c-flow-node-wrapper", __lwc_component_class_internal$b, {
       props: {
         "store": $cmp.store,
@@ -12388,16 +12388,16 @@ var _implicitStylesheets$7 = [stylesheet$7];
 const $fragment1$7 = parseFragment`<button class="flow__controls-button flow__controls-zoomin${0}" type="button"${"a0:title"}${"a0:aria-label"}${"a0:disabled"}${2}><svg viewBox="0 0 32 32" aria-hidden="true"${3}><path d="M32 18.133H18.133V32h-4.266V18.133H0v-4.266h13.867V0h4.266v13.867H32z"${3}/></svg></button>`;
 const $fragment2$3 = parseFragment`<button class="flow__controls-button flow__controls-zoomout${0}" type="button"${"a0:title"}${"a0:aria-label"}${"a0:disabled"}${2}><svg viewBox="0 0 32 5" aria-hidden="true"${3}><path d="M0 0h32v4.2H0z"${3}/></svg></button>`;
 const $fragment3$3 = parseFragment`<button class="flow__controls-button flow__controls-fitview${0}" type="button"${"a0:title"}${"a0:aria-label"}${2}><svg viewBox="0 0 32 30" aria-hidden="true"${3}><path d="M3.692 4.63c0-.53.4-.938.939-.938h5.215V0H4.708C2.13 0 0 2.054 0 4.63v5.216h3.692V4.631zM27.354 0h-5.2v3.692h5.17c.53 0 .984.4.984.939v5.215H32V4.631A4.624 4.624 0 0027.354 0zm.954 24.83c0 .532-.4.94-.939.94h-5.215v3.768h5.215c2.577 0 4.631-2.13 4.631-4.707v-5.139h-3.692v5.139zm-23.677.94c-.531 0-.939-.4-.939-.94v-5.138H0v5.139c0 2.577 2.13 4.707 4.708 4.707h5.138V25.77H4.631z"${3}/></svg></button>`;
-const $fragment4$1 = parseFragment`<svg viewBox="0 0 25 32" aria-hidden="true"${3}><path d="M21.333 10.667H19.81V7.619C19.81 3.429 16.38 0 12.19 0c-4.114 1.828-1.37 2.133.305 2.438 1.676.305 4.42 2.59 4.42 5.181v3.048H3.047A3.056 3.056 0 000 13.714v15.238A3.056 3.056 0 003.048 32h18.285a3.056 3.056 0 003.048-3.048V13.714a3.056 3.056 0 00-3.048-3.047zM12.19 24.533a3.056 3.056 0 01-3.047-3.047 3.056 3.056 0 013.047-3.048 3.056 3.056 0 013.048 3.048 3.056 3.056 0 01-3.048 3.047z"${3}/></svg>`;
-const $fragment5$1 = parseFragment`<svg viewBox="0 0 25 32" aria-hidden="true"${3}><path d="M21.333 10.667H19.81V7.619C19.81 3.429 16.38 0 12.19 0 8 0 4.571 3.429 4.571 7.619v3.048H3.048A3.056 3.056 0 000 13.714v15.238A3.056 3.056 0 003.048 32h18.285a3.056 3.056 0 003.048-3.048V13.714a3.056 3.056 0 00-3.048-3.047zM12.19 24.533a3.056 3.056 0 01-3.047-3.047 3.056 3.056 0 013.047-3.048 3.056 3.056 0 013.048 3.048 3.056 3.056 0 01-3.048 3.047zm4.724-13.866H7.467V7.619c0-2.59 2.133-4.724 4.723-4.724 2.591 0 4.724 2.133 4.724 4.724v3.048z"${3}/></svg>`;
-const stc0$4 = {
+const $fragment4$2 = parseFragment`<svg viewBox="0 0 25 32" aria-hidden="true"${3}><path d="M21.333 10.667H19.81V7.619C19.81 3.429 16.38 0 12.19 0c-4.114 1.828-1.37 2.133.305 2.438 1.676.305 4.42 2.59 4.42 5.181v3.048H3.047A3.056 3.056 0 000 13.714v15.238A3.056 3.056 0 003.048 32h18.285a3.056 3.056 0 003.048-3.048V13.714a3.056 3.056 0 00-3.048-3.047zM12.19 24.533a3.056 3.056 0 01-3.047-3.047 3.056 3.056 0 013.047-3.048 3.056 3.056 0 013.048 3.048 3.056 3.056 0 01-3.048 3.047z"${3}/></svg>`;
+const $fragment5$2 = parseFragment`<svg viewBox="0 0 25 32" aria-hidden="true"${3}><path d="M21.333 10.667H19.81V7.619C19.81 3.429 16.38 0 12.19 0 8 0 4.571 3.429 4.571 7.619v3.048H3.048A3.056 3.056 0 000 13.714v15.238A3.056 3.056 0 003.048 32h18.285a3.056 3.056 0 003.048-3.048V13.714a3.056 3.056 0 00-3.048-3.047zM12.19 24.533a3.056 3.056 0 01-3.047-3.047 3.056 3.056 0 013.047-3.048 3.056 3.056 0 013.048 3.048 3.056 3.056 0 01-3.048 3.047zm4.724-13.866H7.467V7.619c0-2.59 2.133-4.724 4.723-4.724 2.591 0 4.724 2.133 4.724 4.724v3.048z"${3}/></svg>`;
+const stc0$5 = {
   "flow__controls-button": true,
   "flow__controls-interactive": true
 };
-const stc1$2 = {
+const stc1$3 = {
   key: 17
 };
-const stc2$2 = [];
+const stc2$3 = [];
 function tmpl$9($api, $cmp, $slotset, $ctx) {
   const {ncls: api_normalize_class_name, b: api_bind, sp: api_static_part, st: api_static_fragment, fr: api_fragment, h: api_element, s: api_slot, c: api_custom_element} = $api;
   const {_m0, _m1, _m2, _m3, _m4, _m5, _m6} = $ctx;
@@ -12440,7 +12440,7 @@ function tmpl$9($api, $cmp, $slotset, $ctx) {
       "aria-label": $cmp.fitViewLabel
     }
   }, null)])], 0) : null, $cmp.showInteractive ? api_fragment(10, [api_element("button", {
-    classMap: stc0$4,
+    classMap: stc0$5,
     attrs: {
       "type": "button",
       "title": $cmp.interactiveLabel,
@@ -12451,7 +12451,7 @@ function tmpl$9($api, $cmp, $slotset, $ctx) {
     on: _m6 || ($ctx._m6 = {
       "click": api_bind($cmp.handleToggleInteractive)
     })
-  }, [$cmp.interactive ? api_fragment(12, [api_static_fragment($fragment4$1, 14)], 0) : api_fragment(12, [api_static_fragment($fragment5$1, 16)], 0)])], 0) : null, api_slot("", stc1$2, stc2$2, $slotset)])])];
+  }, [$cmp.interactive ? api_fragment(12, [api_static_fragment($fragment4$2, 14)], 0) : api_fragment(12, [api_static_fragment($fragment5$2, 16)], 0)])], 0) : null, api_slot("", stc1$3, stc2$3, $slotset)])])];
   /*LWC compiler v9.4.3*/
 }
 var _tmpl$9 = registerTemplate(tmpl$9);
@@ -12688,7 +12688,7 @@ var _implicitStylesheets$6 = [stylesheet$6];
 const $fragment1$6 = parseSVGFragment`<title${"a0:id"}${3}>${"t1"}</title>`;
 const $fragment2$2 = parseSVGFragment`<rect${"c0"}${"a0:data-id"}${"a0:x"}${"a0:y"}${"a0:rx"}${"a0:ry"}${"a0:width"}${"a0:height"}${2}/>`;
 const $fragment3$2 = parseSVGFragment`<path class="flow__minimap-mask${0}"${"a0:d"} fill-rule="evenodd" pointer-events="none"${2}/>`;
-const stc0$3 = {
+const stc0$4 = {
   "flow__minimap-svg": true
 };
 function tmpl$8($api, $cmp, $slotset, $ctx) {
@@ -12698,7 +12698,7 @@ function tmpl$8($api, $cmp, $slotset, $ctx) {
     className: api_normalize_class_name($cmp.panelClass),
     key: 0
   }, [api_element("svg", {
-    classMap: stc0$3,
+    classMap: stc0$4,
     style: $cmp.svgStyle,
     attrs: {
       "width": $cmp.width,
@@ -13112,21 +13112,21 @@ const __lwc_component_class_internal$8 = registerComponent(FlowMinimap, {
   apiVersion: 66
 });
 
-const stc0$2 = {
+const stc0$3 = {
   "flow__pane": true
 };
-const stc1$1 = {
+const stc1$2 = {
   "flow__viewport": true
 };
-const stc2$1 = {
+const stc2$2 = {
   key: 10
 };
-const stc3$1 = [];
+const stc3$2 = [];
 function tmpl$7($api, $cmp, $slotset, $ctx) {
   const {b: api_bind, c: api_custom_element, fr: api_fragment, h: api_element, s: api_slot} = $api;
   const {_m0, _m1, _m2, _m3, _m4} = $ctx;
   return [api_element("div", {
-    classMap: stc0$2,
+    classMap: stc0$3,
     attrs: {
       "data-flow-id": $cmp.flowId
     },
@@ -13162,7 +13162,7 @@ function tmpl$7($api, $cmp, $slotset, $ctx) {
       "edgemouseleave": api_bind($cmp.handleForward)
     })
   }), api_element("div", {
-    classMap: stc1$1,
+    classMap: stc1$2,
     style: $cmp.viewportStyle,
     ref: "viewport",
     key: 4
@@ -13207,7 +13207,7 @@ function tmpl$7($api, $cmp, $slotset, $ctx) {
       "minimapclick": api_bind($cmp.handleForward),
       "minimapnodeclick": api_bind($cmp.handleForward)
     })
-  })], 0) : null, api_slot("", stc2$1, stc3$1, $slotset)])];
+  })], 0) : null, api_slot("", stc2$2, stc3$2, $slotset)])];
   /*LWC compiler v9.4.3*/
 }
 var _tmpl$7 = registerTemplate(tmpl$7);
@@ -15653,9 +15653,9 @@ function stylesheet$1(token, useActualHostSelector, useNativeDirPseudoclass) {
 }
 var _implicitStylesheets$1 = [stylesheet$1];
 
-const stc0$1 = [];
+const stc0$2 = [];
 function tmpl$2($api, $cmp, $slotset, $ctx) {
-  return stc0$1;
+  return stc0$2;
   /*LWC compiler v9.4.3*/
 }
 var _tmpl$2 = registerTemplate(tmpl$2);
@@ -17355,135 +17355,464 @@ const __lwc_component_class_internal$2 = registerComponent(Flow, {
   apiVersion: 66
 });
 
-const $fragment1$1 = parseFragment`<header class="demo__head${0}"${2}><div${3}><h1 class="demo__title${0}"${2}>lwc-flow</h1><p class="demo__sub${0}"${2}><a href="https://github.com/xyflow/xyflow"${3}>xyflow</a> ported to Lightning Web Components - no d3, no npm packages, no CDN scripts. This page runs the deployable component source unchanged.</p></div><a class="demo__repo${0}" href="https://github.com/grzmol/lwc-flow"${2}>View on GitHub</a></header>`;
-const $fragment2$1 = parseFragment`<button class="demo__btn${0}"${2}>Add node</button>`;
+const $fragment1$1 = parseFragment`<header class="demo__head${0}"${2}><div class="demo__brand${0}"${2}><span class="demo__mark${0}"${2}><svg viewBox="0 0 48 36" aria-hidden="true"${3}><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"${3}><path d="M12 8 C22 8 26 18 36 18"${3}/><path d="M12 28 C22 28 26 18 36 18"${3}/></g><g fill="currentColor"${3}><circle cx="7" cy="8" r="5"${3}/><circle cx="7" cy="28" r="5"${3}/><circle cx="41" cy="18" r="5"${3}/></g></svg></span><div${3}><h1 class="demo__title${0}"${2}>LWC-xyflow</h1><p class="demo__sub${0}"${2}><a href="https://github.com/xyflow/xyflow"${3}>xyflow</a> ported to Lightning Web Components - no d3, no npm packages, no CDN scripts. This page runs the deployable component source unchanged.</p></div></div><div class="demo__actions${0}"${2}><button class="demo__theme${0}"${"a19:title"}${"a19:aria-label"}${2}>${"t20"}</button><a class="demo__repo${0}" href="https://github.com/grzmol/lwc-flow"${2}>View on GitHub</a></div></header>`;
+const $fragment2$1 = parseFragment`<button class="demo__btn demo__btn_primary${0}"${2}>Add node</button>`;
 const $fragment3$1 = parseFragment`<button class="demo__btn${0}"${"a0:disabled"}${2}>Delete selected</button>`;
-const $fragment4 = parseFragment`<button class="demo__btn${0}"${2}>Fit view</button>`;
-const $fragment5 = parseFragment`<button class="demo__btn${0}"${2}>Reset</button>`;
-const $fragment6 = parseFragment`<label class="demo__field${0}"${2}>Edge type<select class="demo__select${0}"${2}><option value="smoothstep" selected${3}>smoothstep</option><option value="default"${3}>bezier</option><option value="simplebezier"${3}>simple bezier</option><option value="straight"${3}>straight</option><option value="step"${3}>step</option><option value="wavy"${3}>wavy (custom)</option></select></label>`;
-const $fragment7 = parseFragment`<span class="demo__hint${0}"${2}>Drag a handle to connect · shift-drag the pane to marquee-select · Backspace deletes</span>`;
-const $fragment8 = parseFragment`<div class="demo__stats${0}"${2}><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t3"}</span><span${3}>nodes</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t8"}</span><span${3}>edges</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t13"}</span><span${3}>selected</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t18"}</span><span${3}>zoom</span></div></div>`;
-const $fragment9 = parseFragment`<h2 class="demo__side-title${0}"${2}>Change log</h2>`;
-const $fragment10 = parseFragment`<p class="demo__side-note${0}"${2}>The flow never owns the graph. Every interaction leaves as a change array that this page folds back in with <code${3}>applyNodeChanges</code> and <code${3}>applyEdgeChanges</code>.</p>`;
-const $fragment11 = parseFragment`<li class="demo__log-row${0}"${2}>${"t1"}</li>`;
-const $fragment12 = parseFragment`<p class="demo__side-note${0}"${2}>Nothing selected. Click a node or an edge.</p>`;
-const stc0 = {
+const $fragment4$1 = parseFragment`<button class="demo__btn${0}"${2}>Fit view</button>`;
+const $fragment5$1 = parseFragment`<button class="demo__btn${0}"${2}>Reset</button>`;
+const $fragment6$1 = parseFragment`<span class="demo__sep${0}"${2}></span>`;
+const $fragment7$1 = parseFragment`<button class="demo__btn${0}"${"a0:disabled"} title="Undo"${2}>↩ Undo</button>`;
+const $fragment8 = parseFragment`<button class="demo__btn${0}"${"a0:disabled"} title="Redo"${2}>Redo ↪</button>`;
+const $fragment9 = parseFragment`<button class="demo__btn${0}"${2}>Copy JSON</button>`;
+const $fragment10 = parseFragment`<span class="demo__sep${0}"${2}></span>`;
+const $fragment11 = parseFragment`<label class="demo__field${0}"${2}>Edge type<select class="demo__select${0}"${2}><option value="default" selected${3}>bezier</option><option value="smoothstep"${3}>smoothstep</option><option value="simplebezier"${3}>simple bezier</option><option value="straight"${3}>straight</option><option value="step"${3}>step</option><option value="wavy"${3}>wavy (custom)</option></select></label>`;
+const $fragment12 = parseFragment`<span class="demo__hint${0}"${2}>Drag a handle to connect · shift-drag the pane to marquee-select · Backspace deletes</span>`;
+const $fragment13 = parseFragment`<div class="demo__stats${0}"${2}><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t3"}</span><span${3}>nodes</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t8"}</span><span${3}>edges</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t13"}</span><span${3}>selected</span></div><div class="demo__stat${0}"${2}><span class="demo__stat-value${0}"${2}>${"t18"}</span><span${3}>zoom</span></div></div>`;
+const $fragment14 = parseFragment`<h2 class="demo__side-title${0}"${2}>New node</h2>`;
+const $fragment15 = parseFragment`<span${3}>id</span>`;
+const $fragment16 = parseFragment`<span${3}>type</span>`;
+const $fragment17 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment18 = parseFragment`<span${3}>title</span>`;
+const $fragment19 = parseFragment`<span${3}>meta</span>`;
+const $fragment20 = parseFragment`<span${3}>icon</span>`;
+const $fragment21 = parseFragment`<span${3}>tone</span>`;
+const $fragment22 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment23 = parseFragment`<span${3}>size</span>`;
+const $fragment24 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment25 = parseFragment`<span${3}>chip</span>`;
+const $fragment26 = parseFragment`<span${3}>chip tone</span>`;
+const $fragment27 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment28 = parseFragment`<span${3}>progress %</span>`;
+const $fragment29 = parseFragment`<span${3}>width</span>`;
+const $fragment30 = parseFragment`<span${3}>height</span>`;
+const $fragment31 = parseFragment`<span${3}>x</span>`;
+const $fragment32 = parseFragment`<span${3}>y</span>`;
+const $fragment33 = parseFragment`<span${3}>source</span>`;
+const $fragment34 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment35 = parseFragment`<span${3}>target</span>`;
+const $fragment36 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment37 = parseFragment`<span${3}>parent</span>`;
+const $fragment38 = parseFragment`<option${"a0:value"}${"a0:selected"}${3}>${"t1"}</option>`;
+const $fragment39 = parseFragment`<div class="demo__form-actions${0}"${2}><button class="demo__btn demo__btn_primary${0}"${2}>Create node</button><button class="demo__btn${0}"${2}>Cancel</button></div>`;
+const $fragment40 = parseFragment`<h2 class="demo__side-title${0}"${2}>Inspector</h2>`;
+const $fragment41 = parseFragment`<div class="demo__prop${0}"${2}><dt${3}>${"t2"}</dt><dd${3}>${"t4"}</dd></div>`;
+const $fragment42 = parseFragment`<button class="demo__tone${0}"${"a0:data-tone"}${"a0:title"}${2}><span${"c1"}${2}></span></button>`;
+const $fragment43 = parseFragment`<button class="demo__btn demo__btn_block${0}"${2}>Toggle animated</button>`;
+const $fragment44 = parseFragment`<p class="demo__side-note${0}"${2}>Nothing selected. Click a node or an edge.</p>`;
+const $fragment45 = parseFragment`<h2 class="demo__side-title${0}"${2}>Change log</h2>`;
+const $fragment46 = parseFragment`<p class="demo__side-note${0}"${2}>The flow never owns the graph. Every interaction leaves as a change array that this page folds back in with <code${3}>applyNodeChanges</code> and <code${3}>applyEdgeChanges</code>.</p>`;
+const $fragment47 = parseFragment`<li class="demo__log-row${0}"${2}>${"t1"}</li>`;
+const stc0$1 = {
   classMap: {
     "demo": true
   },
   key: 0
 };
-const stc1 = {
+const stc1$1 = {
   classMap: {
     "demo__toolbar": true
   },
   key: 3
 };
-const stc2 = {
+const stc2$1 = {
   classMap: {
     "demo__check": true
   },
-  key: 14
+  key: 24
 };
-const stc3 = {
+const stc3$1 = {
   "type": "checkbox"
 };
 const stc4 = {
   classMap: {
     "demo__check": true
   },
-  key: 16
+  key: 26
 };
 const stc5 = {
   classMap: {
     "demo__check": true
   },
-  key: 18
+  key: 28
 };
 const stc6 = {
   classMap: {
-    "demo__body": true
+    "demo__check": true
   },
-  key: 20
+  key: 30
 };
 const stc7 = {
   classMap: {
-    "demo__canvas": true
+    "demo__body": true
   },
-  key: 21
+  key: 32
 };
 const stc8 = {
-  props: {
-    "position": "top-right"
-  },
-  key: 23
-};
-const stc9 = {
   classMap: {
-    "demo__side": true
-  },
-  key: 26
-};
-const stc10 = {
-  classMap: {
-    "demo__log": true
+    "demo__canvas": true
   },
   key: 33
 };
+const stc9 = {
+  props: {
+    "position": "top-right"
+  },
+  key: 35
+};
+const stc10 = {
+  classMap: {
+    "demo__side": true
+  },
+  key: 38
+};
+const stc11 = {
+  classMap: {
+    "demo__form": true
+  },
+  key: 44
+};
+const stc12 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 45
+};
+const stc13 = {
+  "demo__input": true
+};
+const stc14 = {
+  "type": "text",
+  "data-field": "id"
+};
+const stc15 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 49
+};
+const stc16 = {
+  "demo__select": true
+};
+const stc17 = {
+  "data-field": "type"
+};
+const stc18 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 55
+};
+const stc19 = {
+  "type": "text",
+  "data-field": "title"
+};
+const stc20 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 60
+};
+const stc21 = {
+  "type": "text",
+  "data-field": "meta"
+};
+const stc22 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 64
+};
+const stc23 = {
+  "type": "text",
+  "maxlength": "2",
+  "data-field": "icon"
+};
+const stc24 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 68
+};
+const stc25 = {
+  "data-field": "tone"
+};
+const stc26 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 74
+};
+const stc27 = {
+  "data-field": "size"
+};
+const stc28 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 80
+};
+const stc29 = {
+  "type": "text",
+  "placeholder": "(none)",
+  "data-field": "chipText"
+};
+const stc30 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 84
+};
+const stc31 = {
+  "data-field": "chipTone"
+};
+const stc32 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 90
+};
+const stc33 = {
+  "type": "number",
+  "min": "0",
+  "max": "100",
+  "placeholder": "(none)",
+  "data-field": "progress"
+};
+const stc34 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 95
+};
+const stc35 = {
+  "type": "number",
+  "data-field": "width"
+};
+const stc36 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 99
+};
+const stc37 = {
+  "type": "number",
+  "data-field": "height"
+};
+const stc38 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 103
+};
+const stc39 = {
+  "type": "number",
+  "data-field": "x"
+};
+const stc40 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 107
+};
+const stc41 = {
+  "type": "number",
+  "data-field": "y"
+};
+const stc42 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 111
+};
+const stc43 = {
+  "data-field": "sourcePosition"
+};
+const stc44 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 117
+};
+const stc45 = {
+  "data-field": "targetPosition"
+};
+const stc46 = {
+  classMap: {
+    "demo__row": true
+  },
+  key: 123
+};
+const stc47 = {
+  "data-field": "parentId"
+};
+const stc48 = {
+  classMap: {
+    "demo__flags": true
+  },
+  key: 129
+};
+const stc49 = {
+  classMap: {
+    "demo__check": true
+  },
+  key: 130
+};
+const stc50 = {
+  "type": "checkbox",
+  "data-field": "draggable"
+};
+const stc51 = {
+  classMap: {
+    "demo__check": true
+  },
+  key: 132
+};
+const stc52 = {
+  "type": "checkbox",
+  "data-field": "selectable"
+};
+const stc53 = {
+  classMap: {
+    "demo__check": true
+  },
+  key: 134
+};
+const stc54 = {
+  "type": "checkbox",
+  "data-field": "connectable"
+};
+const stc55 = {
+  classMap: {
+    "demo__check": true
+  },
+  key: 136
+};
+const stc56 = {
+  "type": "checkbox",
+  "data-field": "deletable"
+};
+const stc57 = {
+  classMap: {
+    "demo__inspect": true
+  },
+  key: 143
+};
+const stc58 = {
+  classMap: {
+    "demo__rename": true
+  },
+  key: 145
+};
+const stc59 = {
+  "type": "text"
+};
+const stc60 = {
+  classMap: {
+    "demo__props": true
+  },
+  key: 147
+};
+const stc61 = {
+  classMap: {
+    "demo__tones": true
+  },
+  key: 151
+};
+const stc62 = {
+  classMap: {
+    "demo__log": true
+  },
+  key: 162
+};
 function tmpl$1($api, $cmp, $slotset, $ctx) {
-  const {st: api_static_fragment, b: api_bind, sp: api_static_part, h: api_element, t: api_text, c: api_custom_element, d: api_dynamic_text, k: api_key, i: api_iterator, fr: api_fragment} = $api;
-  const {_m0, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, _m11, _m12} = $ctx;
-  return [api_element("div", stc0, [api_static_fragment($fragment1$1, 2), api_element("div", stc1, [api_static_fragment($fragment2$1, 5, [api_static_part(0, {
-    on: _m1 || ($ctx._m1 = {
-      "click": api_bind($cmp.handleAddNode)
+  const {b: api_bind, d: api_dynamic_text, sp: api_static_part, st: api_static_fragment, h: api_element, t: api_text, c: api_custom_element, k: api_key, i: api_iterator, fr: api_fragment, ncls: api_normalize_class_name} = $api;
+  const {_m0, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, _m11, _m12, _m13, _m14, _m15, _m16, _m17, _m18, _m19, _m20, _m21, _m22, _m23, _m24, _m25, _m26, _m27, _m28, _m29, _m30, _m31, _m32, _m33, _m34, _m35, _m36, _m37, _m38, _m39, _m40, _m41, _m42, _m43, _m44, _m45, _m46, _m47, _m48} = $ctx;
+  return [api_element("div", stc0$1, [api_static_fragment($fragment1$1, 2, [api_static_part(19, {
+    on: _m0 || ($ctx._m0 = {
+      "click": api_bind($cmp.handleThemeToggle)
+    }),
+    attrs: {
+      "title": $cmp.themeTitle,
+      "aria-label": $cmp.themeTitle
+    }
+  }, null), api_static_part(20, null, api_dynamic_text($cmp.themeIcon))]), api_element("div", stc1$1, [api_static_fragment($fragment2$1, 5, [api_static_part(0, {
+    on: _m2 || ($ctx._m2 = {
+      "click": api_bind($cmp.handleOpenAdd)
     })
   }, null)]), api_static_fragment($fragment3$1, 7, [api_static_part(0, {
-    on: _m3 || ($ctx._m3 = {
+    on: _m4 || ($ctx._m4 = {
       "click": api_bind($cmp.handleDeleteSelected)
     }),
     attrs: {
       "disabled": $cmp.hasNoSelection ? "" : null
     }
-  }, null)]), api_static_fragment($fragment4, 9, [api_static_part(0, {
-    on: _m5 || ($ctx._m5 = {
+  }, null)]), api_static_fragment($fragment4$1, 9, [api_static_part(0, {
+    on: _m6 || ($ctx._m6 = {
       "click": api_bind($cmp.handleFitView)
     })
-  }, null)]), api_static_fragment($fragment5, 11, [api_static_part(0, {
-    on: _m7 || ($ctx._m7 = {
+  }, null)]), api_static_fragment($fragment5$1, 11, [api_static_part(0, {
+    on: _m8 || ($ctx._m8 = {
       "click": api_bind($cmp.handleReset)
     })
-  }, null)]), api_static_fragment($fragment6, 13, [api_static_part(2, {
-    on: _m8 || ($ctx._m8 = {
+  }, null)]), api_static_fragment($fragment6$1, 13), api_static_fragment($fragment7$1, 15, [api_static_part(0, {
+    on: _m10 || ($ctx._m10 = {
+      "click": api_bind($cmp.handleUndo)
+    }),
+    attrs: {
+      "disabled": $cmp.cannotUndo ? "" : null
+    }
+  }, null)]), api_static_fragment($fragment8, 17, [api_static_part(0, {
+    on: _m12 || ($ctx._m12 = {
+      "click": api_bind($cmp.handleRedo)
+    }),
+    attrs: {
+      "disabled": $cmp.cannotRedo ? "" : null
+    }
+  }, null)]), api_static_fragment($fragment9, 19, [api_static_part(0, {
+    on: _m14 || ($ctx._m14 = {
+      "click": api_bind($cmp.handleCopyJson)
+    })
+  }, null)]), api_static_fragment($fragment10, 21), api_static_fragment($fragment11, 23, [api_static_part(2, {
+    on: _m15 || ($ctx._m15 = {
       "change": api_bind($cmp.handleEdgeTypeChange)
     })
-  }, null)]), api_element("label", stc2, [api_element("input", {
-    attrs: stc3,
+  }, null)]), api_element("label", stc2$1, [api_element("input", {
+    attrs: stc3$1,
     props: {
       "checked": $cmp.snapToGrid
     },
-    key: 15,
-    on: _m9 || ($ctx._m9 = {
+    key: 25,
+    on: _m16 || ($ctx._m16 = {
       "change": api_bind($cmp.handleSnapChange)
     })
   }), api_text("Snap to grid")]), api_element("label", stc4, [api_element("input", {
-    attrs: stc3,
+    attrs: stc3$1,
     props: {
       "checked": $cmp.showBackground
     },
-    key: 17,
-    on: _m10 || ($ctx._m10 = {
+    key: 27,
+    on: _m17 || ($ctx._m17 = {
       "change": api_bind($cmp.handleBackgroundChange)
     })
   }), api_text("Background")]), api_element("label", stc5, [api_element("input", {
-    attrs: stc3,
+    attrs: stc3$1,
     props: {
       "checked": $cmp.showMinimap
     },
-    key: 19,
-    on: _m11 || ($ctx._m11 = {
+    key: 29,
+    on: _m18 || ($ctx._m18 = {
       "change": api_bind($cmp.handleMinimapChange)
     })
-  }), api_text("Minimap")])]), api_element("div", stc6, [api_element("section", stc7, [api_custom_element("c-flow", __lwc_component_class_internal$2, {
+  }), api_text("Minimap")]), api_element("label", stc6, [api_element("input", {
+    attrs: stc3$1,
+    props: {
+      "checked": $cmp.locked
+    },
+    key: 31,
+    on: _m19 || ($ctx._m19 = {
+      "change": api_bind($cmp.handleLockChange)
+    })
+  }), api_text("Lock nodes")])]), api_element("div", stc7, [api_element("section", stc8, [api_custom_element("c-flow", __lwc_component_class_internal$2, {
     ref: "flow",
     props: {
       "nodes": $cmp.nodes,
@@ -17495,20 +17824,295 @@ function tmpl$1($api, $cmp, $slotset, $ctx) {
       "showBackground": $cmp.showBackground,
       "showControls": $cmp.showControls,
       "showMinimap": $cmp.showMinimap,
-      "snapToGrid": $cmp.snapToGrid
+      "snapToGrid": $cmp.snapToGrid,
+      "nodesDraggable": $cmp.nodesDraggable,
+      "isValidConnection": $cmp.isValidConnection
     },
-    key: 22,
-    on: _m12 || ($ctx._m12 = {
+    key: 34,
+    on: _m20 || ($ctx._m20 = {
       "nodeschange": api_bind($cmp.handleNodesChange),
       "edgeschange": api_bind($cmp.handleEdgesChange),
       "connect": api_bind($cmp.handleConnect),
       "move": api_bind($cmp.handleMove),
       "nodesinitialized": api_bind($cmp.handleNodesInitialized),
+      "nodeclick": api_bind($cmp.handleNodeClick),
+      "edgeclick": api_bind($cmp.handleEdgeClick),
+      "paneclick": api_bind($cmp.handlePaneClick),
       "flowerror": api_bind($cmp.handleFlowError)
     })
-  }, [api_custom_element("c-flow-panel", __lwc_component_class_internal$e, stc8, [api_static_fragment($fragment7, 25)])])]), api_element("aside", stc9, [api_static_fragment($fragment8, 28, [api_static_part(3, null, api_dynamic_text($cmp.nodeCount)), api_static_part(8, null, api_dynamic_text($cmp.edgeCount)), api_static_part(13, null, api_dynamic_text($cmp.selectedCount)), api_static_part(18, null, api_dynamic_text($cmp.zoomLabel))]), api_static_fragment($fragment9, 30), api_static_fragment($fragment10, 32), api_element("ul", stc10, api_iterator($cmp.logEntries, function (entry) {
-    return api_static_fragment($fragment11, api_key(35, entry.key), [api_static_part(1, null, api_dynamic_text(entry.text))]);
-  })), $cmp.hasNoSelection ? api_fragment(36, [api_static_fragment($fragment12, 38)], 0) : null])])])];
+  }, [api_custom_element("c-flow-panel", __lwc_component_class_internal$e, stc9, [api_static_fragment($fragment12, 37)])])]), api_element("aside", stc10, [api_static_fragment($fragment13, 40, [api_static_part(3, null, api_dynamic_text($cmp.nodeCount)), api_static_part(8, null, api_dynamic_text($cmp.edgeCount)), api_static_part(13, null, api_dynamic_text($cmp.selectedCount)), api_static_part(18, null, api_dynamic_text($cmp.zoomLabel))]), $cmp.adding ? api_fragment(41, [api_static_fragment($fragment14, 43), api_element("div", stc11, [api_element("label", stc12, [api_static_fragment($fragment15, 47), api_element("input", {
+    classMap: stc13,
+    attrs: stc14,
+    props: {
+      "value": $cmp.draft.id
+    },
+    key: 48,
+    on: _m21 || ($ctx._m21 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc15, [api_static_fragment($fragment16, 51), api_element("select", {
+    classMap: stc16,
+    attrs: stc17,
+    key: 52,
+    on: _m22 || ($ctx._m22 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.typeOptions, function (option) {
+    return api_static_fragment($fragment17, api_key(54, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc18, [api_static_fragment($fragment18, 57), api_element("input", {
+    classMap: stc13,
+    attrs: stc19,
+    props: {
+      "value": $cmp.draft.title
+    },
+    key: 58,
+    on: _m23 || ($ctx._m23 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), $cmp.isCardDraft ? api_fragment(59, [api_element("label", stc20, [api_static_fragment($fragment19, 62), api_element("input", {
+    classMap: stc13,
+    attrs: stc21,
+    props: {
+      "value": $cmp.draft.meta
+    },
+    key: 63,
+    on: _m24 || ($ctx._m24 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc22, [api_static_fragment($fragment20, 66), api_element("input", {
+    classMap: stc13,
+    attrs: stc23,
+    props: {
+      "value": $cmp.draft.icon
+    },
+    key: 67,
+    on: _m25 || ($ctx._m25 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc24, [api_static_fragment($fragment21, 70), api_element("select", {
+    classMap: stc16,
+    attrs: stc25,
+    key: 71,
+    on: _m26 || ($ctx._m26 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.draftToneOptions, function (option) {
+    return api_static_fragment($fragment22, api_key(73, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc26, [api_static_fragment($fragment23, 76), api_element("select", {
+    classMap: stc16,
+    attrs: stc27,
+    key: 77,
+    on: _m27 || ($ctx._m27 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.sizeOptions, function (option) {
+    return api_static_fragment($fragment24, api_key(79, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc28, [api_static_fragment($fragment25, 82), api_element("input", {
+    classMap: stc13,
+    attrs: stc29,
+    props: {
+      "value": $cmp.draft.chipText
+    },
+    key: 83,
+    on: _m28 || ($ctx._m28 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc30, [api_static_fragment($fragment26, 86), api_element("select", {
+    classMap: stc16,
+    attrs: stc31,
+    key: 87,
+    on: _m29 || ($ctx._m29 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.draftChipToneOptions, function (option) {
+    return api_static_fragment($fragment27, api_key(89, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc32, [api_static_fragment($fragment28, 92), api_element("input", {
+    classMap: stc13,
+    attrs: stc33,
+    props: {
+      "value": $cmp.draft.progress
+    },
+    key: 93,
+    on: _m30 || ($ctx._m30 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })])], 0) : null, $cmp.isGroupDraft ? api_fragment(94, [api_element("label", stc34, [api_static_fragment($fragment29, 97), api_element("input", {
+    classMap: stc13,
+    attrs: stc35,
+    props: {
+      "value": $cmp.draft.width
+    },
+    key: 98,
+    on: _m31 || ($ctx._m31 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc36, [api_static_fragment($fragment30, 101), api_element("input", {
+    classMap: stc13,
+    attrs: stc37,
+    props: {
+      "value": $cmp.draft.height
+    },
+    key: 102,
+    on: _m32 || ($ctx._m32 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })])], 0) : null, api_element("label", stc38, [api_static_fragment($fragment31, 105), api_element("input", {
+    classMap: stc13,
+    attrs: stc39,
+    props: {
+      "value": $cmp.draft.x
+    },
+    key: 106,
+    on: _m33 || ($ctx._m33 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc40, [api_static_fragment($fragment32, 109), api_element("input", {
+    classMap: stc13,
+    attrs: stc41,
+    props: {
+      "value": $cmp.draft.y
+    },
+    key: 110,
+    on: _m34 || ($ctx._m34 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  })]), api_element("label", stc42, [api_static_fragment($fragment33, 113), api_element("select", {
+    classMap: stc16,
+    attrs: stc43,
+    key: 114,
+    on: _m35 || ($ctx._m35 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.sourceOptions, function (option) {
+    return api_static_fragment($fragment34, api_key(116, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc44, [api_static_fragment($fragment35, 119), api_element("select", {
+    classMap: stc16,
+    attrs: stc45,
+    key: 120,
+    on: _m36 || ($ctx._m36 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.targetOptions, function (option) {
+    return api_static_fragment($fragment36, api_key(122, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("label", stc46, [api_static_fragment($fragment37, 125), api_element("select", {
+    classMap: stc16,
+    attrs: stc47,
+    key: 126,
+    on: _m37 || ($ctx._m37 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }, api_iterator($cmp.parentOptions, function (option) {
+    return api_static_fragment($fragment38, api_key(128, option.key), [api_static_part(0, {
+      attrs: {
+        "value": option.value,
+        "selected": option.selected ? "" : null
+      }
+    }, null), api_static_part(1, null, api_dynamic_text(option.label))]);
+  }))]), api_element("div", stc48, [api_element("label", stc49, [api_element("input", {
+    attrs: stc50,
+    props: {
+      "checked": $cmp.draft.draggable
+    },
+    key: 131,
+    on: _m38 || ($ctx._m38 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }), api_text("draggable")]), api_element("label", stc51, [api_element("input", {
+    attrs: stc52,
+    props: {
+      "checked": $cmp.draft.selectable
+    },
+    key: 133,
+    on: _m39 || ($ctx._m39 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }), api_text("selectable")]), api_element("label", stc53, [api_element("input", {
+    attrs: stc54,
+    props: {
+      "checked": $cmp.draft.connectable
+    },
+    key: 135,
+    on: _m40 || ($ctx._m40 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }), api_text("connectable")]), api_element("label", stc55, [api_element("input", {
+    attrs: stc56,
+    props: {
+      "checked": $cmp.draft.deletable
+    },
+    key: 137,
+    on: _m41 || ($ctx._m41 = {
+      "change": api_bind($cmp.handleDraftChange)
+    })
+  }), api_text("deletable")])]), api_static_fragment($fragment39, 139, [api_static_part(1, {
+    on: _m42 || ($ctx._m42 = {
+      "click": api_bind($cmp.handleCreateNode)
+    })
+  }, null), api_static_part(3, {
+    on: _m43 || ($ctx._m43 = {
+      "click": api_bind($cmp.handleCancelAdd)
+    })
+  }, null)])])], 0) : api_fragment(41, [api_static_fragment($fragment40, 141), $cmp.hasInspected ? api_fragment(142, [api_element("div", stc57, [$cmp.inspectedIsNode ? api_fragment(144, [api_element("label", stc58, [api_text("Title"), api_element("input", {
+    classMap: stc13,
+    attrs: stc59,
+    props: {
+      "value": $cmp.inspectedTitle
+    },
+    key: 146,
+    on: _m44 || ($ctx._m44 = {
+      "input": api_bind($cmp.handleTitleInput)
+    })
+  })])], 0) : null, api_element("dl", stc60, api_iterator($cmp.inspectedRows, function (row) {
+    return api_static_fragment($fragment41, api_key(149, row.key), [api_static_part(2, null, api_dynamic_text(row.label)), api_static_part(4, null, api_dynamic_text(row.value))]);
+  })), $cmp.inspectedIsNode ? api_fragment(150, [api_element("div", stc61, api_iterator($cmp.toneOptions, function (option) {
+    return api_static_fragment($fragment42, api_key(153, option.key), [api_static_part(0, {
+      on: _m46 || ($ctx._m46 = {
+        "click": api_bind($cmp.handleToneClick)
+      }),
+      attrs: {
+        "data-tone": option.tone,
+        "title": option.tone
+      }
+    }, null), api_static_part(1, {
+      className: api_normalize_class_name(option.tone)
+    }, null)]);
+  }))], 0) : api_fragment(150, [api_static_fragment($fragment43, 155, [api_static_part(0, {
+    on: _m48 || ($ctx._m48 = {
+      "click": api_bind($cmp.handleToggleAnimated)
+    })
+  }, null)])], 0)])], 0) : api_fragment(142, [api_static_fragment($fragment44, 157)], 0)], 0), api_static_fragment($fragment45, 159), api_static_fragment($fragment46, 161), api_element("ul", stc62, api_iterator($cmp.logEntries, function (entry) {
+    return api_static_fragment($fragment47, api_key(164, entry.key), [api_static_part(1, null, api_dynamic_text(entry.text))]);
+  }))])])])];
   /*LWC compiler v9.4.3*/
 }
 var _tmpl$1 = registerTemplate(tmpl$1);
@@ -17523,16 +18127,44 @@ freezeTemplate(tmpl$1);
 
 function stylesheet(token, useActualHostSelector, useNativeDirPseudoclass) {
   var shadowSelector = token ? ("[" + token + "]") : "";
-  return ".demo-pill" + shadowSelector + " {display: flex;align-items: center;gap: 0.5rem;padding: 0.5rem 0.85rem;border: 1px solid #5b6cff;border-radius: 999px;background: linear-gradient(180deg, #ffffff 0%, #eef0ff 100%);box-shadow: 0 1px 2px rgb(15 17 21 / 18%);font-size: 0.8125rem;font-weight: 600;color: #1b1f3b;white-space: nowrap;}.demo-pill_dragging" + shadowSelector + " {box-shadow: 0 6px 16px rgb(91 108 255 / 45%);}.demo-pill__dot" + shadowSelector + " {width: 0.5rem;height: 0.5rem;border-radius: 50%;background: #5b6cff;}.demo-pill__badge" + shadowSelector + " {padding: 0.05rem 0.4rem;border-radius: 0.35rem;background: #1b1f3b;color: #fff;font-size: 0.625rem;letter-spacing: 0.04em;text-transform: uppercase;}";
+  return ".dcard" + shadowSelector + " {--dcard-tone: var(--tone-violet);box-sizing: border-box;display: flex;flex-direction: column;gap: 0.625rem;padding: 0.75rem;border: 1px solid var(--border);border-radius: 0.625rem;background: var(--surface);box-shadow: var(--shadow-1);font-size: 0.75rem;line-height: 1.35;color: var(--text);text-align: left;}.dcard_md" + shadowSelector + " {width: 13rem;}.dcard_lg" + shadowSelector + " {width: 16.5rem;}.dcard_emphasis" + shadowSelector + " {border-color: var(--accent-line);box-shadow:\n 0 0 0 3px var(--accent-soft),\n var(--shadow-1);}.dcard_dragging" + shadowSelector + " {box-shadow: var(--shadow-2);}.dcard__head" + shadowSelector + " {display: flex;align-items: flex-start;gap: 0.5rem;}.dcard__icon" + shadowSelector + " {flex: none;display: grid;place-items: center;width: 1.5rem;height: 1.5rem;border-radius: 0.375rem;background: color-mix(in srgb, var(--dcard-tone) 14%, transparent);color: var(--dcard-tone);font-size: 0.75rem;line-height: 1;}.dcard__heading" + shadowSelector + " {display: flex;flex-direction: column;gap: 0.125rem;min-width: 0;}.dcard__title" + shadowSelector + " {font-size: 0.8125rem;font-weight: 600;letter-spacing: -0.01em;}.dcard__meta" + shadowSelector + " {color: var(--muted);font-size: 0.6875rem;}.dcard__metrics" + shadowSelector + " {display: flex;gap: 0.5rem;padding-top: 0.5rem;border-top: 1px solid var(--rule);}.dcard__metric" + shadowSelector + " {display: flex;flex-direction: column;gap: 0.0625rem;min-width: 0;}.dcard__metric-label" + shadowSelector + " {color: var(--faint);font-size: 0.5625rem;white-space: nowrap;}.dcard__metric-value" + shadowSelector + " {font-size: 0.75rem;font-weight: 600;font-variant-numeric: tabular-nums;}.dcard__metric-delta" + shadowSelector + " {font-size: 0.5625rem;font-variant-numeric: tabular-nums;}.dcard__metric-delta_up" + shadowSelector + " {color: var(--tone-green);}.dcard__metric-delta_down" + shadowSelector + " {color: var(--tone-rose);}.dcard__metric-delta_flat" + shadowSelector + " {color: var(--faint);}.dcard__bar" + shadowSelector + " {height: 0.25rem;border-radius: 999px;background: var(--rule);overflow: hidden;}.dcard__bar-fill" + shadowSelector + " {display: block;height: 100%;border-radius: inherit;background: var(--dcard-tone);}.dcard__foot" + shadowSelector + " {display: flex;align-items: center;justify-content: space-between;gap: 0.5rem;}.dcard__footer" + shadowSelector + " {color: var(--muted);font-size: 0.6875rem;}.dcard__chip" + shadowSelector + " {--dcard-chip-tone: var(--faint);flex: none;padding: 0.0625rem 0.375rem;border-radius: 0.25rem;background: color-mix(in srgb, var(--dcard-chip-tone) 16%, transparent);color: var(--dcard-chip-tone);font-size: 0.625rem;font-weight: 500;}.dcard__chip_slate" + shadowSelector + " {--dcard-chip-tone: var(--muted);}.dcard__chip_violet" + shadowSelector + " {--dcard-chip-tone: var(--tone-violet);}.dcard__chip_blue" + shadowSelector + " {--dcard-chip-tone: var(--tone-blue);}.dcard__chip_green" + shadowSelector + " {--dcard-chip-tone: var(--tone-green);}.dcard__chip_amber" + shadowSelector + " {--dcard-chip-tone: var(--tone-amber);}.dcard__chip_rose" + shadowSelector + " {--dcard-chip-tone: var(--tone-rose);}.dcard__icon_violet" + shadowSelector + ",.dcard__bar-fill_violet" + shadowSelector + " {--dcard-tone: var(--tone-violet);}.dcard__icon_blue" + shadowSelector + ",.dcard__bar-fill_blue" + shadowSelector + " {--dcard-tone: var(--tone-blue);}.dcard__icon_green" + shadowSelector + ",.dcard__bar-fill_green" + shadowSelector + " {--dcard-tone: var(--tone-green);}.dcard__icon_amber" + shadowSelector + ",.dcard__bar-fill_amber" + shadowSelector + " {--dcard-tone: var(--tone-amber);}.dcard__icon_rose" + shadowSelector + ",.dcard__bar-fill_rose" + shadowSelector + " {--dcard-tone: var(--tone-rose);}";
   /*LWC compiler v9.4.3*/
 }
 var _implicitStylesheets = [stylesheet];
 
-const $fragment1 = parseFragment`<span class="demo-pill__dot${0}"${2}></span>`;
-const $fragment2 = parseFragment`<span class="demo-pill__label${0}"${2}>${"t1"}</span>`;
-const $fragment3 = parseFragment`<span class="demo-pill__badge${0}"${2}>${"t1"}</span>`;
+const $fragment1 = parseFragment`<span${"c0"}${2}>${"t1"}</span>`;
+const $fragment2 = parseFragment`<span class="dcard__title${0}"${2}>${"t1"}</span>`;
+const $fragment3 = parseFragment`<span class="dcard__meta${0}"${2}>${"t1"}</span>`;
+const $fragment4 = parseFragment`<div class="dcard__metric${0}"${2}><span class="dcard__metric-label${0}"${2}>${"t2"}</span><span class="dcard__metric-value${0}"${2}>${"t4"}</span><span${"c5"}${2}>${"t6"}</span></div>`;
+const $fragment5 = parseFragment`<div class="dcard__bar${0}"${2}><span${"c1"}${"s1"}${2}></span></div>`;
+const $fragment6 = parseFragment`<span class="dcard__footer${0}"${2}>${"t1"}</span>`;
+const $fragment7 = parseFragment`<span${"c0"}${2}>${"t1"}</span>`;
+const stc0 = {
+  classMap: {
+    "dcard__head": true
+  },
+  key: 2
+};
+const stc1 = {
+  classMap: {
+    "dcard__heading": true
+  },
+  key: 5
+};
+const stc2 = {
+  classMap: {
+    "dcard__metrics": true
+  },
+  key: 12
+};
+const stc3 = {
+  classMap: {
+    "dcard__foot": true
+  },
+  key: 19
+};
 function tmpl($api, $cmp, $slotset, $ctx) {
-  const {b: api_bind, c: api_custom_element, ncls: api_normalize_class_name, st: api_static_fragment, d: api_dynamic_text, sp: api_static_part, fr: api_fragment, h: api_element} = $api;
+  const {b: api_bind, c: api_custom_element, ncls: api_normalize_class_name, d: api_dynamic_text, sp: api_static_part, st: api_static_fragment, fr: api_fragment, h: api_element, k: api_key, i: api_iterator} = $api;
   const {_m0, _m1} = $ctx;
   return [api_custom_element("c-flow-handle", __lwc_component_class_internal$7, {
     props: {
@@ -17547,10 +18179,21 @@ function tmpl($api, $cmp, $slotset, $ctx) {
     on: _m0 || ($ctx._m0 = {
       "connectstart": api_bind($cmp.handleConnectStart)
     })
-  }), api_element("div", {
-    className: api_normalize_class_name($cmp.pillClass),
+  }), api_element("article", {
+    className: api_normalize_class_name($cmp.cardClass),
     key: 1
-  }, [api_static_fragment($fragment1, 3), api_static_fragment($fragment2, 5, [api_static_part(1, null, api_dynamic_text($cmp.label))]), $cmp.hasBadge ? api_fragment(6, [api_static_fragment($fragment3, 8, [api_static_part(1, null, api_dynamic_text($cmp.badge))])], 0) : null]), api_custom_element("c-flow-handle", __lwc_component_class_internal$7, {
+  }, [api_element("header", stc0, [api_static_fragment($fragment1, 4, [api_static_part(0, {
+    className: api_normalize_class_name($cmp.iconClass)
+  }, null), api_static_part(1, null, api_dynamic_text($cmp.icon))]), api_element("span", stc1, [api_static_fragment($fragment2, 7, [api_static_part(1, null, api_dynamic_text($cmp.title))]), $cmp.hasMeta ? api_fragment(8, [api_static_fragment($fragment3, 10, [api_static_part(1, null, api_dynamic_text($cmp.meta))])], 0) : null])]), $cmp.hasMetrics ? api_fragment(11, [api_element("div", stc2, api_iterator($cmp.metricRows, function (metric) {
+    return api_static_fragment($fragment4, api_key(14, metric.key), [api_static_part(2, null, api_dynamic_text(metric.label)), api_static_part(4, null, api_dynamic_text(metric.value)), api_static_part(5, {
+      className: api_normalize_class_name(metric.deltaClass)
+    }, null), api_static_part(6, null, api_dynamic_text(metric.delta))]);
+  }))], 0) : null, $cmp.hasProgress ? api_fragment(15, [api_static_fragment($fragment5, 17, [api_static_part(1, {
+    className: api_normalize_class_name($cmp.barFillClass),
+    style: $cmp.barStyle
+  }, null)])], 0) : null, $cmp.hasFoot ? api_fragment(18, [api_element("footer", stc3, [$cmp.hasFooter ? api_fragment(20, [api_static_fragment($fragment6, 22, [api_static_part(1, null, api_dynamic_text($cmp.footer))])], 0) : null, $cmp.hasChip ? api_fragment(23, [api_static_fragment($fragment7, 25, [api_static_part(0, {
+    className: api_normalize_class_name($cmp.chipClass)
+  }, null), api_static_part(1, null, api_dynamic_text($cmp.chip))])], 0) : null])], 0) : null]), api_custom_element("c-flow-handle", __lwc_component_class_internal$7, {
     props: {
       "type": "source",
       "position": $cmp.sourcePosition,
@@ -17559,7 +18202,7 @@ function tmpl($api, $cmp, $slotset, $ctx) {
       "flowId": $cmp.flowId,
       "isConnectable": $cmp.isConnectable
     },
-    key: 9,
+    key: 26,
     on: _m1 || ($ctx._m1 = {
       "connectstart": api_bind($cmp.handleConnectStart)
     })
@@ -17569,16 +18212,14 @@ function tmpl($api, $cmp, $slotset, $ctx) {
 var _tmpl = registerTemplate(tmpl);
 tmpl.renderMode = "light";
 tmpl.stylesheets = [];
-tmpl.stylesheetToken = "lwc-7hkmdp222bd";
-tmpl.legacyStylesheetToken = "demo-pillNode_pillNode";
+tmpl.stylesheetToken = "lwc-730d2bc5dd8";
+tmpl.legacyStylesheetToken = "demo-cardNode_cardNode";
 if (_implicitStylesheets) {
   tmpl.stylesheets.push.apply(tmpl.stylesheets, _implicitStylesheets);
 }
 freezeTemplate(tmpl);
 
 /**
- * A custom node type, registered by constructor through `c-flow`'s `node-types`.
- *
  * Light DOM is mandatory, not stylistic: `c/flowDom.getHandleBounds` finds handles with
  * `querySelectorAll` on the node wrapper's root element, and that query stops at the first shadow
  * boundary. A shadow root here would leave `handleBounds` null and every attached edge would fail
@@ -17587,7 +18228,7 @@ freezeTemplate(tmpl);
  * The `@api` surface mirrors `c/flowDefaultNode`: the wrapper spreads the whole node props object
  * with `lwc:spread`, and an undeclared key would land as an expando rather than a public property.
  */
-class PillNode extends LightningElement {
+class CardNode extends LightningElement {
   constructor(...args) {
     super(...args);
     this.id = void 0;
@@ -17611,17 +18252,62 @@ class PillNode extends LightningElement {
     this.store = void 0;
     this.flowId = void 0;
   }
-  get label() {
-    return this.data?.label;
+  get title() {
+    return this.data?.title ?? this.data?.label;
   }
-  get badge() {
-    return this.data?.badge;
+  get meta() {
+    return this.data?.meta;
   }
-  get hasBadge() {
-    return Boolean(this.data?.badge);
+  get hasMeta() {
+    return Boolean(this.data?.meta);
   }
-  get pillClass() {
-    return this.dragging ? 'demo-pill demo-pill_dragging' : 'demo-pill';
+  get icon() {
+    return this.data?.icon ?? '◆';
+  }
+  get iconClass() {
+    return `dcard__icon dcard__icon_${this.data?.tone ?? 'violet'}`;
+  }
+  get cardClass() {
+    return ['dcard', `dcard_${this.data?.size ?? 'md'}`, this.data?.emphasis ? 'dcard_emphasis' : '', this.dragging ? 'dcard_dragging' : ''].filter(Boolean).join(' ');
+  }
+  get metricRows() {
+    return (this.data?.metrics ?? []).map((metric, index) => ({
+      key: `${this.id}-m${index}`,
+      label: metric.label,
+      value: metric.value,
+      delta: metric.delta,
+      deltaClass: `dcard__metric-delta dcard__metric-delta_${metric.direction ?? 'flat'}`
+    }));
+  }
+  get hasMetrics() {
+    return this.metricRows.length > 0;
+  }
+  get hasProgress() {
+    return typeof this.data?.progress === 'number';
+  }
+  get barStyle() {
+    return `width:${Math.round(Math.min(1, Math.max(0, this.data.progress)) * 100)}%`;
+  }
+  get barFillClass() {
+    return `dcard__bar-fill dcard__bar-fill_${this.data?.tone ?? 'violet'}`;
+  }
+  get footer() {
+    return this.data?.footer;
+  }
+  get hasFooter() {
+    return Boolean(this.data?.footer);
+  }
+  get chip() {
+    return this.data?.chip?.text;
+  }
+  get hasChip() {
+    return Boolean(this.data?.chip);
+  }
+  get chipClass() {
+    return `dcard__chip dcard__chip_${this.data?.chip?.tone ?? 'slate'}`;
+  }
+  get hasFoot() {
+    return this.hasFooter || this.hasChip;
   }
 
   /**
@@ -17635,8 +18321,8 @@ class PillNode extends LightningElement {
   }
   /*LWC compiler v9.4.3*/
 }
-PillNode.renderMode = 'light';
-registerDecorators(PillNode, {
+CardNode.renderMode = 'light';
+registerDecorators(CardNode, {
   publicProps: {
     id: {
       config: 0
@@ -17700,156 +18386,313 @@ registerDecorators(PillNode, {
     }
   }
 });
-const __lwc_component_class_internal$1 = registerComponent(PillNode, {
+const __lwc_component_class_internal$1 = registerComponent(CardNode, {
   tmpl: _tmpl,
-  sel: "demo-pill-node",
+  sel: "demo-card-node",
   apiVersion: 66
 });
 
 const ARROW = Object.freeze({
   type: MarkerType.ArrowClosed,
-  width: 18,
-  height: 18
+  width: 16,
+  height: 16
+});
+const FLOWS_RIGHT = Object.freeze({
+  sourcePosition: Position.Right,
+  targetPosition: Position.Left
 });
 
-/** The starting graph: one of every built-in node type, plus the custom `pill` type. */
+/** The starting graph: a revenue model, left to right, inputs to KPIs. */
 function initialNodes() {
   return [{
-    id: 'lead',
-    type: 'input',
+    id: 'web',
+    type: 'card',
     position: {
-      x: 40,
+      x: 0,
       y: 0
     },
+    ...FLOWS_RIGHT,
     data: {
-      label: 'Lead created'
+      title: 'Web form submissions',
+      meta: 'Input · Sum',
+      icon: '◆',
+      tone: 'blue',
+      metrics: [{
+        label: 'Past 7 days',
+        value: '4,570',
+        delta: '0.87% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 6 weeks',
+        value: '26,958',
+        delta: '2.71% ↗',
+        direction: 'up'
+      }]
+    }
+  }, {
+    id: 'events',
+    type: 'card',
+    position: {
+      x: 0,
+      y: 160
+    },
+    ...FLOWS_RIGHT,
+    data: {
+      title: 'Event registrations',
+      meta: 'Input · Sum',
+      icon: '▲',
+      tone: 'violet',
+      metrics: [{
+        label: 'Past 7 days',
+        value: '641',
+        delta: '1.04% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 6 weeks',
+        value: '3,318',
+        delta: '1.44% ↗',
+        direction: 'up'
+      }]
+    }
+  }, {
+    id: 'partner',
+    type: 'card',
+    position: {
+      x: 0,
+      y: 320
+    },
+    ...FLOWS_RIGHT,
+    data: {
+      title: 'Partner referrals',
+      meta: 'Input · Sum',
+      icon: '●',
+      tone: 'amber',
+      metrics: [{
+        label: 'Past 7 days',
+        value: '188',
+        delta: '3.10% ↘',
+        direction: 'down'
+      }, {
+        label: 'Past 6 weeks',
+        value: '1,204',
+        delta: 'no change',
+        direction: 'flat'
+      }]
+    }
+  }, {
+    id: 'qualification',
+    type: 'group',
+    position: {
+      x: 300,
+      y: 60
+    },
+    style: {
+      width: 264,
+      height: 262
+    },
+    data: {
+      label: 'Qualification'
+    }
+  }, {
+    id: 'mql',
+    type: 'card',
+    parentId: 'qualification',
+    extent: 'parent',
+    position: {
+      x: 20,
+      y: 38
+    },
+    ...FLOWS_RIGHT,
+    data: {
+      title: 'Marketing qualified',
+      meta: 'Jira Epic · 4 issues',
+      icon: '◈',
+      tone: 'green',
+      progress: 0.67,
+      footer: '4 issues · 67% done',
+      chip: {
+        text: 'In progress',
+        tone: 'green'
+      }
     }
   }, {
     id: 'score',
-    type: 'pill',
-    position: {
-      x: 30,
-      y: 110
-    },
-    data: {
-      label: 'Score lead',
-      badge: 'apex'
-    }
-  }, {
-    id: 'route',
-    position: {
-      x: 40,
-      y: 220
-    },
-    data: {
-      label: 'Route by score'
-    }
-  }, {
-    id: 'pod',
-    type: 'group',
-    position: {
-      x: -220,
-      y: 340
-    },
-    style: {
-      width: 260,
-      height: 170
-    },
-    data: {
-      label: 'Sales pod'
-    }
-  }, {
-    id: 'ae-1',
-    type: 'pill',
-    parentId: 'pod',
+    type: 'card',
+    parentId: 'qualification',
     extent: 'parent',
     position: {
-      x: 24,
-      y: 40
+      x: 20,
+      y: 150
     },
+    ...FLOWS_RIGHT,
     data: {
-      label: 'Assign AE',
-      badge: 'queue'
+      title: 'Lead scoring model',
+      meta: 'Apex · Einstein',
+      icon: '✦',
+      tone: 'violet',
+      progress: 0.25,
+      footer: '6 issues · 25% done',
+      chip: {
+        text: 'To do',
+        tone: 'amber'
+      }
     }
   }, {
-    id: 'ae-2',
-    type: 'pill',
-    parentId: 'pod',
-    extent: 'parent',
+    id: 'pipeline',
+    type: 'card',
     position: {
-      x: 24,
-      y: 105
+      x: 640,
+      y: 128
     },
+    ...FLOWS_RIGHT,
     data: {
-      label: 'Notify AE',
-      badge: 'platform event'
+      title: 'Qualified pipeline created',
+      meta: 'North Star · Sum',
+      icon: '★',
+      tone: 'violet',
+      size: 'lg',
+      emphasis: true,
+      metrics: [{
+        label: 'Past 7 days',
+        value: '$4.41M',
+        delta: '0.43% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 6 weeks',
+        value: '$26.1M',
+        delta: '2.57% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 12 months',
+        value: '$198M',
+        delta: '38.59% ↗',
+        direction: 'up'
+      }]
     }
   }, {
-    id: 'nurture',
+    id: 'arr',
+    type: 'card',
     position: {
-      x: 160,
-      y: 380
+      x: 1000,
+      y: 0
     },
+    ...FLOWS_RIGHT,
     data: {
-      label: 'Nurture campaign'
+      title: 'ARR',
+      meta: 'KPI · Amount increased',
+      icon: '◆',
+      tone: 'green',
+      metrics: [{
+        label: 'Past 6 weeks',
+        value: '$56,760',
+        delta: '1,676% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 12 months',
+        value: '$612K',
+        delta: '24.6% ↗',
+        direction: 'up'
+      }]
     }
   }, {
-    id: 'converted',
-    type: 'output',
+    id: 'retention',
+    type: 'card',
     position: {
-      x: 60,
-      y: 560
+      x: 1000,
+      y: 160
     },
+    ...FLOWS_RIGHT,
     data: {
-      label: 'Converted'
+      title: 'Monthly retention',
+      meta: 'KPI · Average',
+      icon: '◈',
+      tone: 'blue',
+      metrics: [{
+        label: 'Past 6 weeks',
+        value: '71,521',
+        delta: '3.32% ↗',
+        direction: 'up'
+      }, {
+        label: 'Past 12 months',
+        value: '63,825',
+        delta: '37.70% ↗',
+        direction: 'up'
+      }]
+    }
+  }, {
+    id: 'cycle',
+    type: 'card',
+    position: {
+      x: 1000,
+      y: 320
+    },
+    ...FLOWS_RIGHT,
+    data: {
+      title: 'Sales cycle length',
+      meta: 'KPI · Average',
+      icon: '●',
+      tone: 'rose',
+      metrics: [{
+        label: 'Past 6 weeks',
+        value: '38 days',
+        delta: '4.10% ↘',
+        direction: 'down'
+      }, {
+        label: 'Past 12 months',
+        value: '44 days',
+        delta: '9.80% ↘',
+        direction: 'down'
+      }]
     }
   }];
 }
 function initialEdges() {
   return [{
-    id: 'e-lead-score',
-    source: 'lead',
+    id: 'e-web-mql',
+    source: 'web',
+    target: 'mql',
+    markerEnd: ARROW
+  }, {
+    id: 'e-events-mql',
+    source: 'events',
+    target: 'mql',
+    markerEnd: ARROW
+  }, {
+    id: 'e-partner-score',
+    source: 'partner',
     target: 'score',
-    type: 'smoothstep',
     markerEnd: ARROW
   }, {
-    id: 'e-score-route',
-    source: 'score',
-    target: 'route',
-    type: 'smoothstep',
-    markerEnd: ARROW
-  }, {
-    id: 'e-route-ae',
-    source: 'route',
-    target: 'ae-1',
-    type: 'smoothstep',
+    id: 'e-mql-pipeline',
+    source: 'mql',
+    target: 'pipeline',
     animated: true,
     markerEnd: ARROW
   }, {
-    id: 'e-route-nurture',
-    source: 'route',
-    target: 'nurture',
-    type: 'smoothstep',
+    id: 'e-score-pipeline',
+    source: 'score',
+    target: 'pipeline',
     markerEnd: ARROW
   }, {
-    id: 'e-ae-notify',
-    source: 'ae-1',
-    target: 'ae-2',
-    type: 'step',
+    id: 'e-pipeline-arr',
+    source: 'pipeline',
+    target: 'arr',
+    animated: true,
     markerEnd: ARROW
   }, {
-    id: 'e-ae-converted',
-    source: 'ae-2',
-    target: 'converted',
-    type: 'wavy',
+    id: 'e-pipeline-retention',
+    source: 'pipeline',
+    target: 'retention',
     markerEnd: ARROW
   }, {
-    id: 'e-nurture-converted',
-    source: 'nurture',
-    target: 'converted',
-    type: 'smoothstep',
+    id: 'e-pipeline-cycle',
+    source: 'pipeline',
+    target: 'cycle',
     markerEnd: ARROW
-  }];
+  }].map(edge => ({
+    ...edge,
+    type: 'default'
+  }));
 }
 
 /**
@@ -17877,7 +18720,111 @@ const edgeTypes = Object.freeze({
     defaults: Object.freeze({})
   })
 });
+const NODE_TYPES = ['card', 'input', 'output', 'default', 'group'];
+const TONES = ['violet', 'blue', 'green', 'amber', 'rose'];
+const CHIP_TONES = ['slate', ...TONES];
+const SIZES = ['md', 'lg'];
+const POSITIONS = [Position.Top, Position.Right, Position.Bottom, Position.Left];
+function emptyDraft(sequence) {
+  return {
+    id: `node-${sequence}`,
+    type: 'card',
+    title: `Metric ${sequence}`,
+    meta: 'Input · Sum',
+    icon: '◆',
+    tone: 'blue',
+    size: 'md',
+    chipText: '',
+    chipTone: 'slate',
+    progress: '',
+    x: 0,
+    y: 0,
+    width: 260,
+    height: 200,
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
+    draggable: true,
+    selectable: true,
+    connectable: true,
+    deletable: true,
+    parentId: ''
+  };
+}
+
+/** `<option selected>` cannot be an expression in an LWC template, so the flag is computed here. */
+function options(values, current) {
+  return values.map(value => ({
+    key: value || 'none',
+    value,
+    label: value || '(none)',
+    selected: value === current
+  }));
+}
+
+/** Turn the form draft into a node object of the shape `c-flow` expects for the chosen type. */
+function buildNode(draft) {
+  const node = {
+    id: draft.id,
+    type: draft.type,
+    position: {
+      x: Number(draft.x) || 0,
+      y: Number(draft.y) || 0
+    },
+    sourcePosition: draft.sourcePosition,
+    targetPosition: draft.targetPosition,
+    draggable: draft.draggable,
+    selectable: draft.selectable,
+    connectable: draft.connectable,
+    deletable: draft.deletable,
+    data: {
+      label: draft.title,
+      title: draft.title
+    }
+  };
+  if (draft.parentId) {
+    node.parentId = draft.parentId;
+    node.extent = 'parent';
+  }
+  if (draft.type === 'group') {
+    node.style = {
+      width: Number(draft.width) || 200,
+      height: Number(draft.height) || 160
+    };
+    return node;
+  }
+  if (draft.type !== 'card') {
+    return node;
+  }
+  node.data = {
+    title: draft.title,
+    meta: draft.meta || undefined,
+    icon: draft.icon || '◆',
+    tone: draft.tone,
+    size: draft.size
+  };
+  if (draft.chipText) {
+    node.data.chip = {
+      text: draft.chipText,
+      tone: draft.chipTone
+    };
+  }
+  if (draft.progress !== '') {
+    node.data.progress = Math.min(1, Math.max(0, Number(draft.progress) / 100));
+  }
+  return node;
+}
 const LOG_LIMIT = 9;
+
+/**
+ * Which changes are worth a history entry. A drag emits a position change per pointer move, so only
+ * the one that ends it counts; dimension and select changes are measurement and focus, not edits.
+ */
+function isUndoable(change) {
+  if (change.type === 'position') {
+    return change.dragging === false;
+  }
+  return change.type === 'remove' || change.type === 'add' || change.type === 'replace';
+}
 
 /**
  * The demo host.
@@ -17892,7 +18839,7 @@ class App extends LightningElement {
     this.nodes = initialNodes();
     this.edges = initialEdges();
     this.nodeTypes = {
-      pill: __lwc_component_class_internal$1
+      card: __lwc_component_class_internal$1
     };
     this.edgeTypes = edgeTypes;
     this.snapToGrid = false;
@@ -17901,12 +18848,30 @@ class App extends LightningElement {
     this.showControls = true;
     this.fitView = true;
     this.fitViewOptions = {
-      padding: 0.18
+      padding: 0.12
     };
     this.zoomLabel = '100%';
     this.logEntries = [];
+    this.locked = false;
+    this.theme = 'light';
+    this.adding = false;
+    this.draft = emptyDraft(1);
+    this.selectedId = null;
+    this.selectedKind = null;
     this._nextId = 1;
     this._logSeq = 0;
+    this._past = [];
+    this._future = [];
+    /**
+     * Passed to `c-flow` as a property, so it must be a stable bound function: a fresh arrow on every
+     * render would reset the connection gesture mid-drag.
+     */
+    this.isValidConnection = connection => {
+      if (connection.source === connection.target) {
+        return false;
+      }
+      return !this.edges.some(edge => edge.source === connection.source && edge.target === connection.target);
+    };
   }
   // ------------------------------------------------------------------ stats
 
@@ -17919,14 +18884,95 @@ class App extends LightningElement {
   get selectedCount() {
     return this.nodes.filter(node => node.selected).length + this.edges.filter(edge => edge.selected).length;
   }
-  get hasSelection() {
-    return this.selectedCount > 0;
-  }
   get hasNoSelection() {
     return this.selectedCount === 0;
   }
-  get snapLabel() {
-    return this.snapToGrid ? 'on' : 'off';
+  get nodesDraggable() {
+    return !this.locked;
+  }
+  get themeIcon() {
+    return this.theme === 'dark' ? '☀' : '☾';
+  }
+  get themeTitle() {
+    return this.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+  get cannotUndo() {
+    return this._past.length === 0;
+  }
+  get cannotRedo() {
+    return this._future.length === 0;
+  }
+
+  // -------------------------------------------------------------- inspector
+
+  get inspected() {
+    if (this.selectedKind === 'node') {
+      return this.nodes.find(node => node.id === this.selectedId) ?? null;
+    }
+    if (this.selectedKind === 'edge') {
+      return this.edges.find(edge => edge.id === this.selectedId) ?? null;
+    }
+    return null;
+  }
+  get hasInspected() {
+    return this.inspected !== null;
+  }
+  get inspectedIsNode() {
+    return this.hasInspected && this.selectedKind === 'node';
+  }
+  get inspectedTitle() {
+    return this.inspected?.data?.title ?? this.inspected?.data?.label ?? '';
+  }
+  get inspectedRows() {
+    const element = this.inspected;
+    if (!element) {
+      return [];
+    }
+    const rows = this.selectedKind === 'node' ? [['id', element.id], ['type', element.type ?? 'default'], ['position', `${Math.round(element.position.x)}, ${Math.round(element.position.y)}`], ['size', `${Math.round(element.measured?.width ?? 0)} x ${Math.round(element.measured?.height ?? 0)}`], ['parent', element.parentId ?? '-']] : [['id', element.id], ['type', element.type ?? 'default'], ['source', element.source], ['target', element.target], ['animated', element.animated ? 'true' : 'false']];
+    return rows.map(([label, value]) => ({
+      key: `${element.id}-${label}`,
+      label,
+      value: String(value)
+    }));
+  }
+
+  // ------------------------------------------------------------ new node
+
+  get isCardDraft() {
+    return this.draft.type === 'card';
+  }
+  get isGroupDraft() {
+    return this.draft.type === 'group';
+  }
+  get typeOptions() {
+    return options(NODE_TYPES, this.draft.type);
+  }
+  get draftToneOptions() {
+    return options(TONES, this.draft.tone);
+  }
+  get draftChipToneOptions() {
+    return options(CHIP_TONES, this.draft.chipTone);
+  }
+  get sizeOptions() {
+    return options(SIZES, this.draft.size);
+  }
+  get sourceOptions() {
+    return options(POSITIONS, this.draft.sourcePosition);
+  }
+  get targetOptions() {
+    return options(POSITIONS, this.draft.targetPosition);
+  }
+  get parentOptions() {
+    const groups = this.nodes.filter(node => node.type === 'group').map(node => node.id);
+    return options(['', ...groups], this.draft.parentId);
+  }
+  get toneOptions() {
+    const current = this.inspected?.data?.tone;
+    return ['violet', 'blue', 'green', 'amber', 'rose'].map(tone => ({
+      key: tone,
+      tone,
+      selected: tone === current
+    }));
   }
 
   // -------------------------------------------------- the controlled cycle
@@ -17935,6 +18981,9 @@ class App extends LightningElement {
     const {
       changes
     } = event.detail;
+    if (changes.some(isUndoable)) {
+      this._commit();
+    }
     this.nodes = applyNodeChanges(changes, this.nodes);
     this._log(changes.map(change => `node ${change.type}: ${change.id}`));
   }
@@ -17942,17 +18991,87 @@ class App extends LightningElement {
     const {
       changes
     } = event.detail;
+    if (changes.some(isUndoable)) {
+      this._commit();
+    }
     this.edges = applyEdgeChanges(changes, this.edges);
     this._log(changes.map(change => `edge ${change.type}: ${change.id}`));
   }
   handleConnect(event) {
     const connection = event.detail;
+    this._commit();
     this.edges = addEdge({
       ...connection,
-      type: 'smoothstep',
+      type: 'default',
       markerEnd: ARROW
     }, this.edges);
     this._log([`connect: ${connection.source} -> ${connection.target}`]);
+  }
+
+  // ------------------------------------------------------------- selection
+
+  handleNodeClick(event) {
+    this.selectedKind = 'node';
+    this.selectedId = event.detail.id;
+  }
+  handleEdgeClick(event) {
+    this.selectedKind = 'edge';
+    this.selectedId = event.detail.id;
+  }
+  handlePaneClick() {
+    this.selectedKind = null;
+    this.selectedId = null;
+  }
+  handleTitleInput(event) {
+    const title = event.target.value;
+    this.nodes = this.nodes.map(node => node.id === this.selectedId ? {
+      ...node,
+      data: {
+        ...node.data,
+        title
+      }
+    } : node);
+  }
+  handleToneClick(event) {
+    const tone = event.currentTarget.dataset.tone;
+    this._commit();
+    this.nodes = this.nodes.map(node => node.id === this.selectedId ? {
+      ...node,
+      data: {
+        ...node.data,
+        tone
+      }
+    } : node);
+    this._log([`tone ${this.selectedId}: ${tone}`]);
+  }
+  handleToggleAnimated() {
+    this._commit();
+    this.edges = this.edges.map(edge => edge.id === this.selectedId ? {
+      ...edge,
+      animated: !edge.animated
+    } : edge);
+    this._log([`animated ${this.selectedId}`]);
+  }
+
+  // --------------------------------------------------------- undo and redo
+
+  handleUndo() {
+    const previous = this._past.pop();
+    if (!previous) {
+      return;
+    }
+    this._future.push(this._snapshot());
+    this._restore(previous);
+    this._log(['undo']);
+  }
+  handleRedo() {
+    const next = this._future.pop();
+    if (!next) {
+      return;
+    }
+    this._past.push(this._snapshot());
+    this._restore(next);
+    this._log(['redo']);
   }
   handleMove(event) {
     this._showZoom(event.detail.viewport.zoom);
@@ -17960,34 +19079,52 @@ class App extends LightningElement {
   handleNodesInitialized() {
     this._showZoom(this.refs.flow.getZoom());
   }
+  connectedCallback() {
+    document.documentElement.dataset.theme = this.theme;
+  }
   handleFlowError(event) {
     this._log([`error ${event.detail.id}`]);
   }
 
   // ------------------------------------------------------------- toolbar
 
-  handleAddNode() {
-    const id = `added-${this._nextId++}`;
-    const viewport = this.refs.flow.getViewport();
+  handleOpenAdd() {
     const pane = this.template.querySelector('.demo__canvas').getBoundingClientRect();
-    const position = this.refs.flow.screenToFlowPosition({
+    const centre = this.refs.flow.screenToFlowPosition({
       x: pane.left + pane.width / 2,
       y: pane.top + pane.height / 2
     });
-    this.nodes = [...this.nodes, {
-      id,
-      type: 'pill',
-      position: {
-        x: Math.round(position.x),
-        y: Math.round(position.y)
-      },
-      data: {
-        label: `Step ${this._nextId - 1}`
-      },
-      sourcePosition: Position.Bottom,
-      targetPosition: Position.Top
-    }];
-    this._log([`added ${id} at zoom ${viewport.zoom.toFixed(2)}`]);
+    this.draft = {
+      ...emptyDraft(this._nextId),
+      x: Math.round(centre.x),
+      y: Math.round(centre.y)
+    };
+    this.adding = true;
+  }
+  handleCancelAdd() {
+    this.adding = false;
+  }
+  handleDraftChange(event) {
+    const {
+      field
+    } = event.target.dataset;
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    this.draft = {
+      ...this.draft,
+      [field]: value
+    };
+  }
+  handleCreateNode() {
+    const draft = this.draft;
+    if (this.nodes.some(node => node.id === draft.id)) {
+      this._log([`id taken: ${draft.id}`]);
+      return;
+    }
+    this._commit();
+    this.nodes = [...this.nodes, buildNode(draft)];
+    this._nextId += 1;
+    this.adding = false;
+    this._log([`added ${draft.id} (${draft.type})`]);
   }
   handleDeleteSelected() {
     this.refs.flow.deleteElements({
@@ -17997,12 +19134,13 @@ class App extends LightningElement {
   }
   handleFitView() {
     this.refs.flow.fitViewport({
-      padding: 0.15,
+      padding: 0.12,
       duration: 400
     });
   }
   handleEdgeTypeChange(event) {
     const type = event.target.value;
+    this._commit();
     this.edges = this.edges.map(edge => ({
       ...edge,
       type
@@ -18018,7 +19156,32 @@ class App extends LightningElement {
   handleBackgroundChange(event) {
     this.showBackground = event.target.checked;
   }
+  handleLockChange(event) {
+    this.locked = event.target.checked;
+  }
+
+  /**
+   * The palette lives on :root, not on this component: a custom property is the only thing that
+   * crosses a shadow boundary, so one attribute on <html> re-themes the flow and the node cards too.
+   */
+  handleThemeToggle() {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = this.theme;
+  }
+  async handleCopyJson() {
+    const json = JSON.stringify({
+      nodes: this.nodes,
+      edges: this.edges
+    }, null, 2);
+    try {
+      await navigator.clipboard.writeText(json);
+      this._log([`copied ${json.length} bytes`]);
+    } catch {
+      this._log(['clipboard blocked']);
+    }
+  }
   handleReset() {
+    this._commit();
     this.nodes = initialNodes();
     this.edges = initialEdges();
     this.logEntries = [];
@@ -18030,6 +19193,25 @@ class App extends LightningElement {
 
   _showZoom(zoom) {
     this.zoomLabel = `${Math.round(zoom * 100)}%`;
+  }
+  _snapshot() {
+    return {
+      nodes: this.nodes,
+      edges: this.edges
+    };
+  }
+
+  /** Push the state as it is now, then drop the redo stack: a new branch invalidates the old one. */
+  _commit() {
+    this._past = [...this._past.slice(-40 + 1), this._snapshot()];
+    this._future = [];
+  }
+  _restore({
+    nodes,
+    edges
+  }) {
+    this.nodes = nodes;
+    this.edges = edges;
   }
 
   /** Newest first, capped: the log is a demonstration, not a store. */
@@ -18046,7 +19228,7 @@ class App extends LightningElement {
   /*LWC compiler v9.4.3*/
 }
 registerDecorators(App, {
-  fields: ["nodes", "edges", "nodeTypes", "edgeTypes", "snapToGrid", "showMinimap", "showBackground", "showControls", "fitView", "fitViewOptions", "zoomLabel", "logEntries", "_nextId", "_logSeq"]
+  fields: ["nodes", "edges", "nodeTypes", "edgeTypes", "snapToGrid", "showMinimap", "showBackground", "showControls", "fitView", "fitViewOptions", "zoomLabel", "logEntries", "locked", "theme", "adding", "draft", "selectedId", "selectedKind", "_nextId", "_logSeq", "_past", "_future", "isValidConnection"]
 });
 const __lwc_component_class_internal = registerComponent(App, {
   tmpl: _tmpl$1,

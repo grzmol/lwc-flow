@@ -1,27 +1,55 @@
 <template>
   <div class="demo">
     <header class="demo__head">
-      <div>
-        <h1 class="demo__title">lwc-flow</h1>
-        <p class="demo__sub">
-          <a href="https://github.com/xyflow/xyflow">xyflow</a> ported to Lightning Web Components - no d3, no npm
-          packages, no CDN scripts. This page runs the deployable component source unchanged.
-        </p>
+      <div class="demo__brand">
+        <span class="demo__mark">
+          <svg viewBox="0 0 48 36" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <path d="M12 8 C22 8 26 18 36 18"></path>
+              <path d="M12 28 C22 28 26 18 36 18"></path>
+            </g>
+            <g fill="currentColor">
+              <circle cx="7" cy="8" r="5"></circle>
+              <circle cx="7" cy="28" r="5"></circle>
+              <circle cx="41" cy="18" r="5"></circle>
+            </g>
+          </svg>
+        </span>
+        <div>
+          <h1 class="demo__title">LWC-xyflow</h1>
+          <p class="demo__sub">
+            <a href="https://github.com/xyflow/xyflow">xyflow</a> ported to Lightning Web Components - no d3, no npm
+            packages, no CDN scripts. This page runs the deployable component source unchanged.
+          </p>
+        </div>
       </div>
-      <a class="demo__repo" href="https://github.com/grzmol/lwc-flow">View on GitHub</a>
+      <div class="demo__actions">
+        <button class="demo__theme" onclick={handleThemeToggle} title={themeTitle} aria-label={themeTitle}>
+          {themeIcon}
+        </button>
+        <a class="demo__repo" href="https://github.com/grzmol/lwc-flow">View on GitHub</a>
+      </div>
     </header>
 
     <div class="demo__toolbar">
-      <button class="demo__btn" onclick={handleAddNode}>Add node</button>
+      <button class="demo__btn demo__btn_primary" onclick={handleOpenAdd}>Add node</button>
       <button class="demo__btn" onclick={handleDeleteSelected} disabled={hasNoSelection}>Delete selected</button>
       <button class="demo__btn" onclick={handleFitView}>Fit view</button>
       <button class="demo__btn" onclick={handleReset}>Reset</button>
 
+      <span class="demo__sep"></span>
+
+      <button class="demo__btn" onclick={handleUndo} disabled={cannotUndo} title="Undo">&#8617; Undo</button>
+      <button class="demo__btn" onclick={handleRedo} disabled={cannotRedo} title="Redo">Redo &#8618;</button>
+      <button class="demo__btn" onclick={handleCopyJson}>Copy JSON</button>
+
+      <span class="demo__sep"></span>
+
       <label class="demo__field">
         Edge type
         <select class="demo__select" onchange={handleEdgeTypeChange}>
-          <option value="smoothstep" selected>smoothstep</option>
-          <option value="default">bezier</option>
+          <option value="default" selected>bezier</option>
+          <option value="smoothstep">smoothstep</option>
           <option value="simplebezier">simple bezier</option>
           <option value="straight">straight</option>
           <option value="step">step</option>
@@ -41,6 +69,10 @@
         <input type="checkbox" checked={showMinimap} onchange={handleMinimapChange} />
         Minimap
       </label>
+      <label class="demo__check">
+        <input type="checkbox" checked={locked} onchange={handleLockChange} />
+        Lock nodes
+      </label>
     </div>
 
     <div class="demo__body">
@@ -57,11 +89,16 @@
           show-controls={showControls}
           show-minimap={showMinimap}
           snap-to-grid={snapToGrid}
+          nodes-draggable={nodesDraggable}
+          is-valid-connection={isValidConnection}
           onnodeschange={handleNodesChange}
           onedgeschange={handleEdgesChange}
           onconnect={handleConnect}
           onmove={handleMove}
           onnodesinitialized={handleNodesInitialized}
+          onnodeclick={handleNodeClick}
+          onedgeclick={handleEdgeClick}
+          onpaneclick={handlePaneClick}
           onflowerror={handleFlowError}
         >
           <c-flow-panel position="top-right">
@@ -80,17 +117,246 @@
           <div class="demo__stat"><span class="demo__stat-value">{zoomLabel}</span><span>zoom</span></div>
         </div>
 
+        <template lwc:if={adding}>
+          <h2 class="demo__side-title">New node</h2>
+          <div class="demo__form">
+            <label class="demo__row">
+              <span>id</span>
+              <input class="demo__input" type="text" data-field="id" value={draft.id} onchange={handleDraftChange} />
+            </label>
+
+            <label class="demo__row">
+              <span>type</span>
+              <select class="demo__select" data-field="type" onchange={handleDraftChange}>
+                <template for:each={typeOptions} for:item="option">
+                  <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                </template>
+              </select>
+            </label>
+
+            <label class="demo__row">
+              <span>title</span>
+              <input
+                class="demo__input"
+                type="text"
+                data-field="title"
+                value={draft.title}
+                onchange={handleDraftChange}
+              />
+            </label>
+
+            <template lwc:if={isCardDraft}>
+              <label class="demo__row">
+                <span>meta</span>
+                <input
+                  class="demo__input"
+                  type="text"
+                  data-field="meta"
+                  value={draft.meta}
+                  onchange={handleDraftChange}
+                />
+              </label>
+
+              <label class="demo__row">
+                <span>icon</span>
+                <input
+                  class="demo__input"
+                  type="text"
+                  maxlength="2"
+                  data-field="icon"
+                  value={draft.icon}
+                  onchange={handleDraftChange}
+                />
+              </label>
+
+              <label class="demo__row">
+                <span>tone</span>
+                <select class="demo__select" data-field="tone" onchange={handleDraftChange}>
+                  <template for:each={draftToneOptions} for:item="option">
+                    <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                  </template>
+                </select>
+              </label>
+
+              <label class="demo__row">
+                <span>size</span>
+                <select class="demo__select" data-field="size" onchange={handleDraftChange}>
+                  <template for:each={sizeOptions} for:item="option">
+                    <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                  </template>
+                </select>
+              </label>
+
+              <label class="demo__row">
+                <span>chip</span>
+                <input
+                  class="demo__input"
+                  type="text"
+                  placeholder="(none)"
+                  data-field="chipText"
+                  value={draft.chipText}
+                  onchange={handleDraftChange}
+                />
+              </label>
+
+              <label class="demo__row">
+                <span>chip tone</span>
+                <select class="demo__select" data-field="chipTone" onchange={handleDraftChange}>
+                  <template for:each={draftChipToneOptions} for:item="option">
+                    <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                  </template>
+                </select>
+              </label>
+
+              <label class="demo__row">
+                <span>progress %</span>
+                <input
+                  class="demo__input"
+                  type="number"
+                  min="0"
+                  max="100"
+                  placeholder="(none)"
+                  data-field="progress"
+                  value={draft.progress}
+                  onchange={handleDraftChange}
+                />
+              </label>
+            </template>
+
+            <template lwc:if={isGroupDraft}>
+              <label class="demo__row">
+                <span>width</span>
+                <input
+                  class="demo__input"
+                  type="number"
+                  data-field="width"
+                  value={draft.width}
+                  onchange={handleDraftChange}
+                />
+              </label>
+              <label class="demo__row">
+                <span>height</span>
+                <input
+                  class="demo__input"
+                  type="number"
+                  data-field="height"
+                  value={draft.height}
+                  onchange={handleDraftChange}
+                />
+              </label>
+            </template>
+
+            <label class="demo__row">
+              <span>x</span>
+              <input class="demo__input" type="number" data-field="x" value={draft.x} onchange={handleDraftChange} />
+            </label>
+            <label class="demo__row">
+              <span>y</span>
+              <input class="demo__input" type="number" data-field="y" value={draft.y} onchange={handleDraftChange} />
+            </label>
+
+            <label class="demo__row">
+              <span>source</span>
+              <select class="demo__select" data-field="sourcePosition" onchange={handleDraftChange}>
+                <template for:each={sourceOptions} for:item="option">
+                  <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                </template>
+              </select>
+            </label>
+            <label class="demo__row">
+              <span>target</span>
+              <select class="demo__select" data-field="targetPosition" onchange={handleDraftChange}>
+                <template for:each={targetOptions} for:item="option">
+                  <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                </template>
+              </select>
+            </label>
+
+            <label class="demo__row">
+              <span>parent</span>
+              <select class="demo__select" data-field="parentId" onchange={handleDraftChange}>
+                <template for:each={parentOptions} for:item="option">
+                  <option key={option.key} value={option.value} selected={option.selected}>{option.label}</option>
+                </template>
+              </select>
+            </label>
+
+            <div class="demo__flags">
+              <label class="demo__check">
+                <input type="checkbox" data-field="draggable" checked={draft.draggable} onchange={handleDraftChange} />
+                draggable
+              </label>
+              <label class="demo__check">
+                <input type="checkbox" data-field="selectable" checked={draft.selectable} onchange={handleDraftChange} />
+                selectable
+              </label>
+              <label class="demo__check">
+                <input
+                  type="checkbox"
+                  data-field="connectable"
+                  checked={draft.connectable}
+                  onchange={handleDraftChange}
+                />
+                connectable
+              </label>
+              <label class="demo__check">
+                <input type="checkbox" data-field="deletable" checked={draft.deletable} onchange={handleDraftChange} />
+                deletable
+              </label>
+            </div>
+
+            <div class="demo__form-actions">
+              <button class="demo__btn demo__btn_primary" onclick={handleCreateNode}>Create node</button>
+              <button class="demo__btn" onclick={handleCancelAdd}>Cancel</button>
+            </div>
+          </div>
+        </template>
+
+        <template lwc:else>
+        <h2 class="demo__side-title">Inspector</h2>
+        <div lwc:if={hasInspected} class="demo__inspect">
+          <label lwc:if={inspectedIsNode} class="demo__rename">
+            Title
+            <input class="demo__input" type="text" value={inspectedTitle} oninput={handleTitleInput} />
+          </label>
+
+          <dl class="demo__props">
+            <template for:each={inspectedRows} for:item="row">
+              <div key={row.key} class="demo__prop">
+                <dt>{row.label}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            </template>
+          </dl>
+
+          <div lwc:if={inspectedIsNode} class="demo__tones">
+            <template for:each={toneOptions} for:item="option">
+              <button
+                key={option.key}
+                class="demo__tone"
+                data-tone={option.tone}
+                title={option.tone}
+                onclick={handleToneClick}
+              >
+                <span class={option.tone}></span>
+              </button>
+            </template>
+          </div>
+
+          <button lwc:else class="demo__btn demo__btn_block" onclick={handleToggleAnimated}>Toggle animated</button>
+        </div>
+        <p lwc:else class="demo__side-note">Nothing selected. Click a node or an edge.</p>
+        </template>
+
         <h2 class="demo__side-title">Change log</h2>
         <p class="demo__side-note">
-          The flow never owns the graph. Every interaction leaves as a change array that this page
-          folds back in with <code>applyNodeChanges</code> and <code>applyEdgeChanges</code>.
+          The flow never owns the graph. Every interaction leaves as a change array that this page folds back in with <code>applyNodeChanges</code> and <code>applyEdgeChanges</code>.
         </p>
         <ul class="demo__log">
           <template for:each={logEntries} for:item="entry">
             <li key={entry.key} class="demo__log-row">{entry.text}</li>
           </template>
         </ul>
-        <p lwc:if={hasNoSelection} class="demo__side-note">Nothing selected. Click a node or an edge.</p>
       </aside>
     </div>
   </div>

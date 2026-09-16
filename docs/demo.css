@@ -1,23 +1,86 @@
-/* Page shell only. Everything inside the flow is styled by its own shadow-scoped bundle. */
+/*
+ * The whole palette lives here, on :root, because a custom property is the only thing that crosses
+ * a shadow boundary: the page shell, the flow and the light-DOM node cards all read these names.
+ * Switching `data-theme` on <html> therefore re-themes every layer at once.
+ */
 
-html {
+:root {
+  color-scheme: light;
+
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f9fafb;
+  --border: #e4e7ec;
+  --border-strong: #d0d5dd;
+  --rule: #f2f4f7;
+  --text: #101828;
+  --muted: #667085;
+  --faint: #98a2b3;
+
+  --accent: #7a5af8;
+  --accent-soft: #f4f3ff;
+  --accent-strong: #5925dc;
+  --accent-line: #b8a6fb;
+
+  --edge: #b0b7c3;
+  --grid: #e4e7ec;
+
+  --shadow-1: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 10%);
+  --shadow-2: 0 10px 24px rgb(16 24 40 / 18%), 0 2px 6px rgb(16 24 40 / 10%);
+
+  --tone-violet: #7a5af8;
+  --tone-blue: #2e90fa;
+  --tone-green: #12b76a;
+  --tone-amber: #f79009;
+  --tone-rose: #f04438;
+}
+
+:root[data-theme='dark'] {
   color-scheme: dark;
+
+  --bg: #0e1116;
+  --surface: #161b22;
+  --surface-2: #1b2029;
+  --border: #272e39;
+  --border-strong: #3a4353;
+  --rule: #232a34;
+  --text: #e6e8ef;
+  --muted: #98a2b3;
+  --faint: #6e7787;
+
+  --accent: #a48afb;
+  --accent-soft: rgb(122 90 248 / 18%);
+  --accent-strong: #c3b5fd;
+  --accent-line: #7a5af8;
+
+  --edge: #4a5462;
+  --grid: #272e39;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-2: 0 10px 24px rgb(0 0 0 / 55%);
+
+  --tone-violet: #a48afb;
+  --tone-blue: #6bb6ff;
+  --tone-green: #47cd89;
+  --tone-amber: #fdb022;
+  --tone-rose: #fd8a7a;
 }
 
 body {
   margin: 0;
-  background: #0f1115;
-  color: #e6e8ef;
+  background: var(--bg);
+  color: var(--text);
   font-family:
     system-ui,
     -apple-system,
     'Segoe UI',
     Roboto,
     sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .boot {
   padding: 2rem;
-  color: #767d92;
+  color: var(--muted);
   font-size: 0.875rem;
 }

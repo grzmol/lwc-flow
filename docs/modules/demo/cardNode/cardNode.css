@@ -1,0 +1,210 @@
+/*
+ * Light DOM, so these selectors are global to the page: every class is prefixed `dcard`.
+ * Every colour comes from a custom property declared on :root by the page shell, which is what
+ * lets the theme switch reach inside the flow's shadow tree.
+ */
+
+.dcard {
+  --dcard-tone: var(--tone-violet);
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--text);
+  text-align: left;
+}
+
+.dcard_md {
+  width: 13rem;
+}
+
+.dcard_lg {
+  width: 16.5rem;
+}
+
+.dcard_emphasis {
+  border-color: var(--accent-line);
+  box-shadow:
+    0 0 0 3px var(--accent-soft),
+    var(--shadow-1);
+}
+
+.dcard_dragging {
+  box-shadow: var(--shadow-2);
+}
+
+.dcard__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.dcard__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.375rem;
+  background: color-mix(in srgb, var(--dcard-tone) 14%, transparent);
+  color: var(--dcard-tone);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.dcard__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.dcard__title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dcard__meta {
+  color: var(--muted);
+  font-size: 0.6875rem;
+}
+
+.dcard__metrics {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.dcard__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+
+.dcard__metric-label {
+  color: var(--faint);
+  font-size: 0.5625rem;
+  white-space: nowrap;
+}
+
+.dcard__metric-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dcard__metric-delta {
+  font-size: 0.5625rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.dcard__metric-delta_up {
+  color: var(--tone-green);
+}
+
+.dcard__metric-delta_down {
+  color: var(--tone-rose);
+}
+
+.dcard__metric-delta_flat {
+  color: var(--faint);
+}
+
+.dcard__bar {
+  height: 0.25rem;
+  border-radius: 999px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.dcard__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--dcard-tone);
+}
+
+.dcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dcard__footer {
+  color: var(--muted);
+  font-size: 0.6875rem;
+}
+
+.dcard__chip {
+  --dcard-chip-tone: var(--faint);
+
+  flex: none;
+  padding: 0.0625rem 0.375rem;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--dcard-chip-tone) 16%, transparent);
+  color: var(--dcard-chip-tone);
+  font-size: 0.625rem;
+  font-weight: 500;
+}
+
+.dcard__chip_slate {
+  --dcard-chip-tone: var(--muted);
+}
+
+.dcard__chip_violet {
+  --dcard-chip-tone: var(--tone-violet);
+}
+
+.dcard__chip_blue {
+  --dcard-chip-tone: var(--tone-blue);
+}
+
+.dcard__chip_green {
+  --dcard-chip-tone: var(--tone-green);
+}
+
+.dcard__chip_amber {
+  --dcard-chip-tone: var(--tone-amber);
+}
+
+.dcard__chip_rose {
+  --dcard-chip-tone: var(--tone-rose);
+}
+
+/* Tones drive the icon tile and the progress fill, nothing else. */
+.dcard__icon_violet,
+.dcard__bar-fill_violet {
+  --dcard-tone: var(--tone-violet);
+}
+
+.dcard__icon_blue,
+.dcard__bar-fill_blue {
+  --dcard-tone: var(--tone-blue);
+}
+
+.dcard__icon_green,
+.dcard__bar-fill_green {
+  --dcard-tone: var(--tone-green);
+}
+
+.dcard__icon_amber,
+.dcard__bar-fill_amber {
+  --dcard-tone: var(--tone-amber);
+}
+
+.dcard__icon_rose,
+.dcard__bar-fill_rose {
+  --dcard-tone: var(--tone-rose);
+}

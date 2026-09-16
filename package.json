@@ -2,7 +2,7 @@
   "name": "lwc-flow",
   "private": true,
   "version": "0.1.0",
-  "description": "Node-based flow editor for Salesforce Lightning Web Components. A port of xyflow (@xyflow/react 12.11.6, @xyflow/system 0.0.82) with no runtime dependencies.",
+  "description": "LWC-xyflow: node-based flow editor for Salesforce Lightning Web Components. A port of xyflow (@xyflow/react 12.11.6, @xyflow/system 0.0.82) with no runtime dependencies.",
   "license": "MIT",
   "engines": {
     "node": ">=20"

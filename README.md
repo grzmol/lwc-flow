@@ -1,8 +1,21 @@
-# LWC Port of React Flow
+<p align="center">
+  <img src="docs/logo.svg" alt="lwc-flow" width="132" height="84" />
+</p>
 
-A node-based flow editor for Salesforce Lightning Web Components. A port of
-[xyflow](https://github.com/xyflow/xyflow) (`@xyflow/react` 12.11.6, `@xyflow/system` 0.0.82) with
-**no runtime dependencies** - no d3, no npm packages, no CDN scripts.
+<h1 align="center">LWC-xyflow</h1>
+
+<p align="center">
+  A node-based flow editor for Salesforce Lightning Web Components.<br />
+  A port of <a href="https://github.com/xyflow/xyflow">xyflow</a> with <b>no runtime dependencies</b> — no d3, no npm packages, no CDN scripts.
+</p>
+
+<p align="center">
+  <a href="https://grzmol.github.io/lwc-flow/"><b>→ Live demo</b></a>
+</p>
+
+---
+
+## Quick start
 
 ```html
 <c-flow
@@ -24,7 +37,7 @@ import { applyNodeChanges, applyEdgeChanges, addEdge } from 'c/flowGraph';
 nodes = [
   { id: '1', type: 'input', position: { x: 0, y: 0 }, data: { label: 'Start' } },
   { id: '2', position: { x: 160, y: 120 }, data: { label: 'Middle' } },
-  { id: '3', type: 'output', position: { x: 320, y: 240 }, data: { label: 'End' } }
+  { id: '3', type: 'output', position: { x: 320, y: 240 }, data: { label: 'End' } },
 ];
 edges = [{ id: 'e1-2', source: '1', target: '2', markerEnd: { type: 'arrowclosed' } }];
 
@@ -43,6 +56,16 @@ The flow is **controlled**, exactly like upstream: it never owns your graph. Eve
 leaves as a change array that you fold back in, which is what makes undo, validation and server
 persistence possible without the flow knowing about any of them.
 
+## Install
+
+```bash
+npm install
+sf project deploy start --source-dir force-app --target-org my-org
+```
+
+API version 67.0 or later. `c-flow` is exposed to App, Record, Home and Tab pages with Lightning
+App Builder properties for the common options.
+
 ## What works
 
 | Capability    | Notes                                                                                              |
@@ -59,17 +82,7 @@ persistence possible without the flow knowing about any of them.
 | Culling       | `render-visible-only` skips off-screen nodes and edges                                             |
 | Accessibility | Focusable nodes and edges, arrow-key movement, overridable ARIA labels                             |
 
-## Install
-
-```bash
-npm install
-sf project deploy start --source-dir force-app --target-org my-org
-```
-
-Requires API version 67.0 or later. `c-flow` is exposed to App, Record, Home and Tab pages with
-Lightning App Builder properties for the common options.
-
-## Custom node types
+## Custom nodes
 
 A custom node is an LWC component, registered by constructor:
 
@@ -79,8 +92,11 @@ import MyNode from 'c/myNode';
 nodeTypes = { custom: MyNode };
 ```
 
-**A custom node that renders handles must be light DOM.** Handle measurement uses
-`querySelectorAll`, which does not cross a shadow boundary:
+> [!IMPORTANT]
+> A custom node that renders handles **must be light DOM** (`static renderMode = 'light'`). Handle
+> measurement uses `querySelectorAll`, which does not cross a shadow boundary. Omit it and
+> `handleBounds` stays `null`, so every edge attached to that node silently fails to find an
+> endpoint.
 
 ```js
 export default class MyNode extends LightningElement {
@@ -108,12 +124,9 @@ export default class MyNode extends LightningElement {
 </template>
 ```
 
-Omit it and `handleBounds` stays `null`, so every edge attached to that node silently fails to find
-an endpoint.
+## Custom edges
 
-## Custom edge types
-
-An edge type is a path provider, **not** a component - LWC fixes the SVG namespace per template and
+An edge type is a path provider, **not** a component — LWC fixes the SVG namespace per template and
 a custom element never upgrades inside `<svg>`, so all edges are painted by one renderer:
 
 ```js
@@ -131,20 +144,6 @@ edgeTypes = {
 };
 ```
 
-## Deviations from upstream
-
-Each is forced by the platform, not a shortcut. `docs/ARCHITECTURE.md` has the evidence.
-
-| Upstream                    | Here                               | Why                                                                                      |
-| --------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------- |
-| d3-zoom, d3-drag            | Native Pointer Event kernels       | CSP blocks CDN scripts; no runtime deps. The maths is a verified-identical port          |
-| React context               | Store passed down as `@api store`  | LWC has no context; a module singleton would break two flows on one page                 |
-| Edge components             | Edge-type path providers           | LWC decides the SVG namespace per template; custom elements never upgrade inside `<svg>` |
-| `onlyRenderVisibleElements` | `render-visible-only`              | LWC reserves public properties beginning with `on` (LWC1108)                             |
-| `onBeforeDelete`            | `before-delete`                    | Same                                                                                     |
-| `<Background />` as a child | `show-background` flag             | A slot cannot pass the store to consumer-owned content                                   |
-| One global stylesheet       | Per-bundle CSS + custom properties | Shadow DOM; theme through the properties on `c-flow`                                     |
-
 ## Theming
 
 Set custom properties on `c-flow`. They default through SLDS global hooks, so a flow inherits the
@@ -158,19 +157,39 @@ c-flow {
 }
 ```
 
+## Deviations from upstream
+
+Each is forced by the platform, not a shortcut. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) has
+the evidence.
+
+| Upstream                    | Here                               | Why                                                                                      |
+| --------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------- |
+| d3-zoom, d3-drag            | Native Pointer Event kernels       | CSP blocks CDN scripts; no runtime deps. The maths is a verified-identical port          |
+| React context               | Store passed down as `@api store`  | LWC has no context; a module singleton would break two flows on one page                 |
+| Edge components             | Edge-type path providers           | LWC decides the SVG namespace per template; custom elements never upgrade inside `<svg>` |
+| `onlyRenderVisibleElements` | `render-visible-only`              | LWC reserves public properties beginning with `on` (LWC1108)                             |
+| `onBeforeDelete`            | `before-delete`                    | Same                                                                                     |
+| `<Background />` as a child | `show-background` flag             | A slot cannot pass the store to consumer-owned content                                   |
+| One global stylesheet       | Per-bundle CSS + custom properties | Shadow DOM; theme through the properties on `c-flow`                                     |
+
 ## Development
 
 ```bash
-npm test                      # 813 tests across 23 suites
-npm run test:unit:coverage
+npm test                 # 813 tests across 23 suites
 npm run lint
 npm run format:verify
+
+npm run demo             # build the demo into docs/ and serve it on :8080
 ```
+
+The demo is the page GitHub Pages serves from `docs/`, so `docs/demo.js` is a committed build
+artefact: re-run `npm run demo:build` and commit it after changing anything under `docs/modules`.
 
 Correctness is held by differential testing rather than by eyeballing: the geometry, graph and
 transform kernels are executed side by side with the upstream TypeScript (and with real d3) over
-**862,522 generated cases**, asserting identical output. See `docs/ARCHITECTURE.md`.
+**862,522 generated cases**, asserting identical output. See
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Licence
 
-MIT. Ported from xyflow, also MIT.
+MIT. Ported from [xyflow](https://github.com/xyflow/xyflow), also MIT.
